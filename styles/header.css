@@ -1,0 +1,166 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    border-bottom: 1px solid #C7EEFF;
+    position: fixed;
+    padding-left: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#lower-search-bar {
+    display: none;
+}
+
+/* Left Section */
+
+.left-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    width: 65px;
+    margin-right: 5px;
+}
+
+.logo {
+    width: 100%;
+}
+
+.name {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 18px;
+    color: #1D242B;
+}
+
+a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* End of Left Section */
+
+/* Right Section */
+.right-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(228, 228, 228);
+    height: 40px;
+    border-radius: 3px;
+    position: relative;
+    flex: 3;
+    margin-right: 10px;
+    
+}
+
+.search:focus-within {
+    outline: 1.5px solid rgb(93, 93, 93);
+}
+
+.search-icon-container {
+    width: 45px;
+    height: 40px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;  
+    margin-top: 15px;
+    margin-left: 4px;
+    margin-right: 2px;
+}
+
+.search-icon {
+    width: 26px;
+    border-radius: 3px;
+}
+
+.search-bar {
+    padding-left: 30px;
+    height: 33px;
+    background-color: rgb(228, 228, 228);
+    border: none;
+    flex: 1;
+    outline: none;
+    font-size: 16px;
+}
+
+.profile-cart-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart,
+.profile {
+    width: 29px;
+}
+
+.cart {
+    margin-right:15px;
+}
+
+
+
+
+/* End of Rigth Section */
+
+/* Media query for search bar */
+@media (max-width: 900px) {
+    .search {
+        display: none;
+    }
+
+    .cart,
+    .profile {
+        position: absolute;
+        right: 0;
+    }
+
+    .cart {
+        margin-right: 40px;
+    }
+
+    header {
+        height: 138px;
+        align-items: flex-start;
+    }
+
+    #lower-search-bar {
+        position: absolute;
+        display: block;
+        margin-left: 5px;
+        margin-bottom: 8px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .search-icon-container {
+        margin-top: 5px;
+
+    }
+
+    .left-section {
+        margin-top: 10px;
+    }
+
+
+    .right-section {
+        margin-top: 45px;
+    }
+}
