@@ -1,0 +1,87 @@
+.card-section   {
+    margin-left: 110px;
+    margin-right: 110px;
+
+}
+
+h1 {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 23px;
+    color: #1D242B;
+}
+
+.cards {
+
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    scroll-behavior: smooth;
+    justify-content: space-between;
+}
+
+.cards::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    min-width: 116px;
+    height: 116px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #1D242B;
+    font-size: 11pt;
+    letter-spacing: 0.5px;
+}
+
+.card-icon {
+    width: 36px;
+    margin-bottom: 10px;
+}
+
+.restaurant {
+    background-color: #FFAAC940;
+}
+
+.supermarket {
+    background-color: #FFF3ED;
+}
+
+.pharmacy {
+    background-color: #EBF4FF;
+}
+
+.hospital {
+    background-color: #02C27F23;
+}
+
+.drinks {
+    background-color: #FFF8E4;
+}
+
+.retail {
+    background-color: #DAEFE3;
+}
+
+.african-meals {
+    background-color: #EBF4FF;
+}
+
+@media (max-width: 900px) {
+    .card-section {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .card {
+        min-width: 100px;
+        height: 100px;
+    }
+}
