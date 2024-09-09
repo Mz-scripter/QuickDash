@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 10px;
     height: 3000px;
+    padding-top: 85px;
 }
 
 button {
@@ -12,6 +13,12 @@ button {
     border: 0;
     background-color: rgb(228, 228, 228);
     border-radius: 3px;
+}
+
+@media (max-width: 900px) {
+    body {
+        padding-top: 148px;
+    }
 }
 
 

@@ -9,6 +9,9 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    margin-bottom: 10px;
+    z-index: 100;
+    background-color: #FAFAFA;
 }
 
 #lower-search-bar {
@@ -144,7 +147,8 @@ a {
     #lower-search-bar {
         position: absolute;
         display: block;
-        margin-left: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
         margin-bottom: 8px;
         bottom: 0;
         left: 0;
