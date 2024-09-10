@@ -168,3 +168,13 @@ a {
         margin-top: 45px;
     }
 }
+
+@media (max-width: 500px) {
+    .right-section {
+        display: none;
+    }
+
+    header {
+        height: 120px;
+    }
+}
