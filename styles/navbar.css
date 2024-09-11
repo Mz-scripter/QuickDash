@@ -57,6 +57,10 @@
     border-radius: 50%;
 }
 
+.help-icon-container:hover {
+    cursor: pointer;
+}
+
 .help-icon {
     width: 100%;
 }
