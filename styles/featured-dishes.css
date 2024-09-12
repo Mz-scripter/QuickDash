@@ -1,0 +1,97 @@
+#featured-dishes {
+    margin-left: 110px;
+    margin-right: 110px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.restaurant-name {
+    font-weight: 300;
+    font-style: normal;
+}
+
+.restaurant-dishes {
+    display: grid;
+    grid-template-columns: 305px 305px 305px;
+    gap: 35px;
+}
+
+
+.dish-item {
+    width: 305px;
+    height: 298px;
+    border-radius: 3%;
+    padding: 6px;
+    transition: box-shadow 0.5s;
+}
+
+.dish-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.top-dish-section {
+    width: 100%;
+    height: 60%;
+    margin-bottom: 15px;
+}
+
+.dish-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3%;
+}
+
+.bottom-dish-section {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.name-rating-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.dish-name {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.dish-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.star-emoji {
+    color: gold;
+    height: 18px;
+    margin-left: 3px;
+}
+
+.delivery-time-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.time-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-icon {
+    width: 15px;
+    margin-right: 5px;
+}
+
+.time-duration {
+    color: #0077C0;
+    font-weight: 200;
+}
+
