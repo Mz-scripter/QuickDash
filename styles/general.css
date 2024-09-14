@@ -3,7 +3,7 @@ body {
     font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 10px;
-    padding-top: 85px;
+    padding-top: 85px;  
 }
 
 button {
@@ -17,6 +17,13 @@ button {
 @media (max-width: 900px) {
     body {
         padding-top: 148px;
+    }
+}
+
+@media (max-width:950px) {
+    body {
+        /* padding-left: 50px;
+        padding-right: 50px; */
     }
 }
 
