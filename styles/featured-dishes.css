@@ -1,8 +1,9 @@
 #featured-dishes {
+    width: 85%;
     margin-top: 40px;
     margin-bottom: 30px;
-    margin-left: 100px;
-    margin-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .restaurant-name {
@@ -20,8 +21,6 @@
 .dish-item {
     max-width: 305px;
     max-height: 298px;
-    min-width: 305px;
-    min-height: 298px;
     border-radius: 3%;
     padding: 6px;
     transition: box-shadow 0.5s;
@@ -108,28 +107,18 @@
 
 @media (max-width:950px){
     .restaurant-dishes {
-        grid-template-columns: 305px 305px;
-        gap: 45px;
-    }
-
-    #featured-dishes {
-        margin-left: 10px;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 }
 
 @media (max-width: 500px) {
     .restaurant-dishes {
         grid-template-columns: 1fr;
-        gap: 10px;
+
     }
     .dish-item {
         margin-bottom: 20px;
-        max-width: none;
-
-    }
-
-    #featured-dishes {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
+        max-width: 100% ;
+    } 
 }
