@@ -7,7 +7,7 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-        background-color: #FAFAFA;
+
         gap: 10px;
         position: fixed;
         bottom: 3px;
@@ -18,41 +18,35 @@
     }
 
     .nav-link{
-        width: 70px;
-        height: 70px;
-        color: #1D242B;
-    }
-
-
-    .nav-item {
+        text-decoration: none;
         display: flex;
         flex-direction: column;
-        max-width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #d4f2ff;
         align-items: center;
-        color: #1D242B;
-        justify-content: center;
-        flex: 1;
-        transition: background-color 0.35s, color 0.35s;
+        color: inherit;
+        width: 55px;
+        height: 55px;
+        background-color: #C7EEFF;
+        border-radius: 50%;
+        /* Remove highlighting on link on mobile devices */
+        -webkit-tap-highlight-color: transparent; 
+        transition: background-color 0.15s, color 0.15s;
     }
 
-
-
-    .nav-item:active {
-        background-color: #0077C0;
-        color: #FAFAFA;
+    .nav-link:focus {
+        background-color: #56876D;
+        color: white;
     }
+
 
     .nav-icon {
         width: 36px;
         height: 30px;
+        background-color: transparent;
     }
     
     .nav-text {
         font-weight: 600;
-        font-size: 14px;
+        font-size: 70%;
     }
 
     .help-icon-container {
