@@ -7,27 +7,42 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-        background-color: #C7EEFF;
+        background-color: #FAFAFA;
+        gap: 10px;
         position: fixed;
-        bottom: 0;
+        bottom: 3px;
         left: 0;
         right: 0;
-        height: 55px;
         padding-left: 10px;
         padding-right: 10px;
     }
 
+    .nav-link{
+        width: 70px;
+        height: 70px;
+        color: #1D242B;
+    }
+
+
     .nav-item {
         display: flex;
         flex-direction: column;
+        max-width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #d4f2ff;
         align-items: center;
+        color: #1D242B;
         justify-content: center;
         flex: 1;
-        transition: background-color 0.15s;
+        transition: background-color 0.35s, color 0.35s;
     }
 
+
+
     .nav-item:active {
-        background-color: #d4f2ff;
+        background-color: #0077C0;
+        color: #FAFAFA;
     }
 
     .nav-icon {
