@@ -7,12 +7,15 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-
+        background-color: #C9C5CB;
+        border-radius: 50px;
         gap: 10px;
         position: fixed;
         bottom: 3px;
-        left: 0;
-        right: 0;
+        left: 10px;
+        right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -25,7 +28,7 @@
         color: inherit;
         width: 55px;
         height: 55px;
-        background-color: #C7EEFF;
+        background-color: #FAFAFA;
         border-radius: 50%;
         /* Remove highlighting on link on mobile devices */
         -webkit-tap-highlight-color: transparent; 
