@@ -3,10 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/register.css">
     <title>Join QuickDash | Sign Up Today!</title>
 </head>
 <body>
-    
+    <div class="form-container">
+        <h2 class="title">REGISTER</h2>
+        <form action="#" method="post">
+            <div class="input-field fullname">
+                <input type="text" required>
+                <label>Last Name</label>
+                <input type="text" required>
+                <label>First Name</label>
+            </div>
+            <div class="input-field">
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-field">
+                <input type="tel" required>
+                <label>Phone</label>
+            </div>
+            <div class="input-field">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="input-field" >
+                <input type="password" required>
+                <label>Confirm Password</label>
+            </div>
+            <a href="#">Forget Password?</a>
+            <button type="submit">REGISTER</button>
+        </form>
+    </div>
 </body>
 </html>

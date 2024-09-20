@@ -1,13 +1,75 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box  ;
     overflow: hidden;
 }
 
-
-
 body {
     height: 100vh;
-    background-image: url(../assets/images/bg-img.jpg);
+    background: url(../assets/images/bg-img.jpg), #EFEFEF;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
 }
+
+.form-container {
+    background-color: #EFEFEF;
+    position: relative;
+    opacity: 0.9;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin-top: 10px;
+    position: absolute;
+    top: 15px;
+}
+
+button {
+    display: block;
+}
+
+
+/* Responsiveness */
+/* @media (max-width: 1500px) {
+    .form-container {
+        width: 55%;
+    }
+}
+
+@media (max-width: 800px) {
+    .form-container {
+        width: 65%;
+        height: 65%;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        width: 70%;
+        height: 55%;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-container {
+        width: 85%;
+    }
+}
+
+@media (max-width: 400px) {
+    .form-container {
+        height: 45%;
+    }
+} */
+/* End of Responsiveness */
