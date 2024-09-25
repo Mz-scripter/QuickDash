@@ -46,6 +46,17 @@
         height: 30px;
         background-color: transparent;
     }
+
+    .nav-cart {
+        position: relative;
+    }
+
+    .numc {
+        padding: 5px;
+        border-radius: 10px;
+        top: 1px;
+        right: -2px;
+    }
     
     .nav-text {
         font-weight: 600;
