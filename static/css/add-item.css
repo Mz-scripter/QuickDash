@@ -1,0 +1,20 @@
+.masthead {
+    padding-top: 50px;
+    height: 70vh;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #FAFAFA;
+    font-size: 6vw;
+    font-weight: bold;
+}
+
+.numc {
+    width: 10px;
+    height: 10px;
+    padding: 8px;
+}

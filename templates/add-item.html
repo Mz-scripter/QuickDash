@@ -1,0 +1,16 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add-item.css') }}">
+<div class="masthead" style="background-image: url({{ url_for('static', filename='images/bg-add-item.jpg') }});">
+    <h1>Add New Item</h1>
+</div>
+
+<div class="form">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </div>
+</div>
+{% endblock %}

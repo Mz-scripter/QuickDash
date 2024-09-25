@@ -2,6 +2,8 @@ from flask import Flask, redirect, render_template, flash, url_for
 from flask import request, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from forms import AddItemForm
+from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from sqlalchemy.orm import relationship
 from functools import wraps
@@ -9,6 +11,7 @@ from functools import wraps
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "LXS2U[j&'iMg<)5R~@!Q%0TKn"
 bcrypt = Bcrypt(app)
+Bootstrap(app)
 
 # Connect to db
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quickdash.db'
@@ -69,6 +72,10 @@ def login():
                     flash("Password incorrect, try again", 'error')
     return render_template('login.html')
 
+@app.route('/add-item', methods=['GET', 'POST'])
+def add_item():
+    form = AddItemForm()
+    return render_template('add-item.html', form=form)
 
 
 if __name__ == "__main__":
