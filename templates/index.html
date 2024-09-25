@@ -1,66 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/featured-dishes.css') }}">
-
-
-    <title>Convenience Delivered, Every Time | QuickDash</title>
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="left-section">
-            <a href="index.html">
-                <div class="logo-container">
-                    <img src="{{ url_for('static', filename='icons/delivery-truck-delivery-svgrepo-com.svg') }}" alt="" class="logo">
-                </div>
-                <div class="name">QuickDash</div>
-            </a>
-            
-        </div>
-
-        <div class="right-section">
-            <div class="search">
-                <span class="search-icon-container">
-                    
-                    <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
-                </span>
-                <input type="text" class="search-bar" placeholder="Search QuickDash">
-            </div>
-            <div class="profile-cart-container">
-                <div class="cart-container">
-                    <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
-                    <span class="numc">1</span>
-                </div>
-                <div class="profile-container">
-                    <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt="" class="profile">
-                </div>                
-            </div>
-        </div>
-       
-        <!-- Lower Search Bar -->
-        <div class="search" id="lower-search-bar">
-            <span class="search-icon-container">
-                <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
-            </span>
-            <input type="text" class="search-bar" placeholder="Search QuickDash">
-        </div>
-         <!-- End of Lower Search Bar -->
-
-    </header>
-    <!-- End of Header Section -->
-
-    <!-- Card Section -->
+{% include "header.html" %}
+ <!-- Card Section -->
      <section class="card-section">
         <h1>Explore Categories</h1>
         <div class="cards">
@@ -99,36 +38,6 @@
         </div>
      </section>
      <!-- End of Card Section -->
-    
-    <!-- Navbar for Smaller screens -->
-     <nav id="navbar">
-        <a href="#" class="nav-link">
-            <img src="{{ url_for('static', filename='icons/home-svgrepo-com.svg') }}" alt="" class="nav-icon nav-home">
-            <span class="nav-text">HOME</span>            
-        </a>
-        <a href="#" class="nav-link nav-cart">
-            <img src="{{ url_for('static', filename='icons/cart-svgrepo-com.svg') }}" alt="" class="nav-icon">
-            <span class="numc">1</span>
-            <span class="nav-text">CART</span>
-        </a>
-        <a href="#" class="nav-link">
-            <img src="{{ url_for('static', filename='icons/message-circle-dots-svgrepo-com.svg') }}" alt="" class="nav-icon nav-help">
-            <span class="nav-text">HELP</span>
-        </a>
-        <a href="#" class="nav-link">
-            <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt="" class="nav-icon nav-profile">
-            <span class="nav-text">PROFILE</span>
-        </a>
-        
-     </nav>
-    <!-- End of Navbar for Smaller screens -->
-
-
-     <!-- Help Icon on Larger Screens -->
-      <div class="help-icon-container">
-        <img src="{{ url_for('static', filename='icons/help-information-question-svgrepo-com.svg') }}" alt="" class="help-icon">
-      </div>
-      <!-- End of Help Icon on Larger Screens -->
 
       <!-- Featured Dishes Section -->
         <section id="featured-dishes">
