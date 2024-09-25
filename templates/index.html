@@ -38,16 +38,19 @@
                 <input type="text" class="search-bar" placeholder="Search QuickDash">
             </div>
             <div class="profile-cart-container">
-                <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
-                <span class="numc">1</span>
-                <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt="" class="profile">
+                <div class="cart-container">
+                    <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
+                    <span class="numc">1</span>
+                </div>
+                <div class="profile-container">
+                    <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt="" class="profile">
+                </div>                
             </div>
         </div>
        
         <!-- Lower Search Bar -->
         <div class="search" id="lower-search-bar">
             <span class="search-icon-container">
-                {{ url_for('static', filename='icons/search-svgrepo-com.svg') }}
                 <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
             </span>
             <input type="text" class="search-bar" placeholder="Search QuickDash">
@@ -103,8 +106,9 @@
             <img src="{{ url_for('static', filename='icons/home-svgrepo-com.svg') }}" alt="" class="nav-icon nav-home">
             <span class="nav-text">HOME</span>            
         </a>
-        <a href="#" class="nav-link">
-            <img src="{{ url_for('static', filename='icons/cart-svgrepo-com.svg') }}" alt="" class="nav-icon nav-cart">
+        <a href="#" class="nav-link nav-cart">
+            <img src="{{ url_for('static', filename='icons/cart-svgrepo-com.svg') }}" alt="" class="nav-icon">
+            <span class="numc">1</span>
             <span class="nav-text">CART</span>
         </a>
         <a href="#" class="nav-link">

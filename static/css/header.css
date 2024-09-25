@@ -55,7 +55,7 @@ a {
 /* Right Section */
 .right-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 40%;
 }
@@ -104,7 +104,6 @@ a {
 }
 
 .profile-cart-container {
-    position: relative;
     flex: 1;
     display: flex;
     align-items: center;
@@ -116,14 +115,26 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    top: -5px;
+    top: -10px;
+    right: -10px;
     font-size: 12px;
     background-color: rgb(250, 66, 66);
     color: #FAFAFA;
-    padding: 2px;
+    padding: 4px;
     height: 10px;
     width: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+.cart-container {
+    position: relative;
+}
+
+.cart-container,
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart,
@@ -131,8 +142,8 @@ a {
     width: 29px;
 }
 
-.cart {
-    margin-right:15px;
+.profile {
+    margin-left:15px;
 }
 
 
@@ -146,14 +157,12 @@ a {
         display: none;
     }
 
-    .cart,
-    .profile {
-        position: absolute;
-        right: 0;
+    .profile-cart-container{
+        justify-content: flex-end;
     }
 
-    .cart {
-        margin-right: 40px;
+    .profile {
+        margin-left: 15px;
     }
 
     header {
