@@ -15,15 +15,16 @@ body {
     padding: 0 10px;
 }
 
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url("{{ url_for('static', filename='images/bg-img.jpg') }}"), #0077C0;
-    background-position: center;
-    background-size: cover  ;
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #1C211D inset !important;
+    -webkit-text-fill-color: #FAFAFA !important;
 }
+
 
 .form-container {
     width: 400px;
