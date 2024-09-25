@@ -26,11 +26,19 @@ def load_user(user_id):
 
 # Configure Tables
 class Users(UserMixin, db.Model):
-    __table__name = "users"
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique=True)
     password = db.Column(db.String(250), nullable=False)
+
+class Items(db.Model):
+    __tablename__ = 'items'
+    id = db.Column(db.Integer, primary_key=True)
+    dish = db.Column(db.String(250), nullable=False)
+    rating = db.Column(db.String(10), nullable=False)
+    time = db.Column(db.String(250), nullable=False)
+    img_url = db.Column(db.String(250), nullable=False)
 
 # with app.app_context():
 #     db.create_all()
@@ -75,6 +83,17 @@ def login():
 @app.route('/add-item', methods=['GET', 'POST'])
 def add_item():
     form = AddItemForm()
+    if request.method == "POST":
+        with app.app_context():
+            new_item = Items(
+                dish = form.dish.data,
+                rating = form.rating.data,
+                time = form.time.data,
+                img_url = form.img_url.data
+            )
+            db.session.add(new_item)
+            db.session.commit()
+            return redirect(url_for('home'))
     return render_template('add-item.html', form=form)
 
 
