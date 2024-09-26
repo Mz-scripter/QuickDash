@@ -40,12 +40,36 @@ class Items(db.Model):
     time = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
 
+class Cart(db.Model):
+    __tablename__ = 'cart'
+    id = db.Column(db.Integer, primary_key=True)
+    dish = db.Column(db.String(250), nullable=False)
+    rating = db.Column(db.String(10), nullable=False)
+    time = db.Column(db.String(250), nullable=False)
+    img_url = db.Column(db.String(250), nullable=False)
+
 # with app.app_context():
 #     db.create_all()
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template('index.html')
+    items = Items.query.all()
+    return render_template('index.html', all_items=items)
+
+@app.route('/add-to-cart', methods=["GET", "POST"])
+def add_to_cart():
+    item_id = request.args.get('id')
+    with app.app_context():
+        item_to_add = db.session().query(Items).get(item_id)
+        cart_item = Cart(
+            dish = item_to_add.dish,
+            rating = item_to_add.rating,
+            time = item_to_add.time,
+            img_url = item_to_add.img_url
+        )
+        db.session.add(cart_item)
+        db.session.commit()
+        return redirect(request.referrer)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
