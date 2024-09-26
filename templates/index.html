@@ -41,53 +41,18 @@
 
       <!-- Featured Dishes Section -->
         <section id="featured-dishes">
-            <div id="restaurant">
-                <h2 class="restaurant-name">Chicken & Co</h2>
-                <div class="restaurant-dishes">
-                    <!-- Dish Card Item -->
-                    <div class="dish-item">
-                        <div class="top-dish-section">  
-                            <img src="{{ url_for('static', filename='images/card-img-4.jpg') }}" alt="" class="dish-img">
-                        </div>
-                        <div class="bottom-dish-section">
-                            <div class="name-rating-section">
-                                <span class="dish-name">Frosty Whirl</span>
-                                <span class="dish-rating">
-                                    <span class="dish-rate">4.5</span>
-                                    <span class="star-emoji">&#9733;</span>
-                                </span>
-                            </div>
-                            <div class="delivery-time-section">
-                                <span class="time-icon-container"> 
-                                    <img src="{{ url_for('static', filename='icons/time-svgrepo-com.svg') }}" alt="" class="time-icon">
-                                </span>
-                                <span class="time-duration">
-                                    20 - 30 mins
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End of Dish Card Item -->
-                </div>
-            </div>
-        </section>
-       <!-- End of Featured Dishes Section -->
-
-       <!-- Featured Dishes Section -->
-       <section id="featured-dishes">
-        <div id="restaurant">
-            <h2 class="restaurant-name">Ollaass Cafe</h2>
             <div class="restaurant-dishes">
+                {% for item in all_items %}
                 <!-- Dish Card Item -->
                 <div class="dish-item">
                     <div class="top-dish-section">  
-                        <img src="{{ url_for('static', filename='images/card-img-11.jpg') }}" alt="" class="dish-img">
+                        <img src="{{ item.img_url }}" alt="" class="dish-img">
                     </div>
                     <div class="bottom-dish-section">
                         <div class="name-rating-section">
-                            <span class="dish-name">Chick n' Chips Delight</span>
+                            <span class="dish-name">{{ item.dish }}</span>
                             <span class="dish-rating">
-                                <span class="dish-rate">4.4</span>
+                                <span class="dish-rate">{{ item.rating }}</span>
                                 <span class="star-emoji">&#9733;</span>
                             </span>
                         </div>
@@ -96,84 +61,25 @@
                                 <img src="{{ url_for('static', filename='icons/time-svgrepo-com.svg') }}" alt="" class="time-icon">
                             </span>
                             <span class="time-duration">
-                                30 - 45 mins
+                                {{ item.time }}
                             </span>
                         </div>
                     </div>
+                    
+                    <div class="add-cart">
+                        <a href="{{ url_for('add_to_cart', id=item.id) }}">
+                            <img src="{{ url_for('static', filename='icons/plus-svgrepo-com.svg') }}" alt="" class="add-cart-icon">
+                        </a>
+                        <span class="hover-text">Add to Cart</span>
+                    </div>
                 </div>
                 <!-- End of Dish Card Item -->
+                {% endfor %}
             </div>
-        </div>
-    </section>
-   <!-- End of Featured Dishes Section -->
+        </section>
+       <!-- End of Featured Dishes Section -->
 
-   <!-- Featured Dishes Section -->
-   <section id="featured-dishes">
-    <div id="restaurant">
-        <h2 class="restaurant-name">Bossy Food Canteen</h2>
-        <div class="restaurant-dishes">
-            <!-- Dish Card Item -->
-            <div class="dish-item">
-                <div class="top-dish-section">  
-                    <img src="{{ url_for('static', filename='images/card-img-8.jpg') }}" alt="" class="dish-img">
-                </div>
-                <div class="bottom-dish-section">
-                    <div class="name-rating-section">
-                        <span class="dish-name">Classic Crunch Chicken</span>
-                        <span class="dish-rating">
-                            <span class="dish-rate">4.8</span>
-                            <span class="star-emoji">&#9733;</span>
-                        </span>
-                    </div>
-                    <div class="delivery-time-section">
-                        <span class="time-icon-container">
-                            <img src="{{ url_for('static', filename='icons/time-svgrepo-com.svg') }}" alt="" class="time-icon">
-                        </span>
-                        <span class="time-duration">
-                            20 - 30 mins
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Dish Card Item -->
-        </div>
-    </div>
-</section>
-<!-- End of Featured Dishes Section -->
-
-<!-- Featured Dishes Section -->
-<section id="featured-dishes">
-    <div id="restaurant">
-        <h2 class="restaurant-name">Modu Shopping Mall</h2>
-        <div class="restaurant-dishes">
-            <!-- Dish Card Item -->
-            <div class="dish-item">
-                <div class="top-dish-section">
-                    <img src="{{ url_for('static', filename='images/fruit.jpg') }}" alt="" class="dish-img">
-                </div>
-                <div class="bottom-dish-section">
-                    <div class="name-rating-section">
-                        <span class="dish-name">Fruits</span>
-                        <span class="dish-rating">
-                            <span class="dish-rate">4.8</span>
-                            <span class="star-emoji">&#9733;</span>
-                        </span>
-                    </div>
-                    <div class="delivery-time-section">
-                        <span class="time-icon-container">   
-                            <img src="{{ url_for('static', filename='icons/time-svgrepo-com.svg') }}" alt="" class="time-icon">
-                        </span>
-                        <span class="time-duration">
-                            20 - 30 mins
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Dish Card Item -->
-        </div>
-    </div>
-</section>
-<!-- End of Featured Dishes Section -->
+       
  <script src="scripts/main.js"></script>
 </body>
 </html>
