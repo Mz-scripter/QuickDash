@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, flash, url_for
-from flask import request, abort
+from flask import request, abort, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from forms import AddItemForm
@@ -50,11 +50,14 @@ class Cart(db.Model):
 
 # with app.app_context():
 #     db.create_all()
+@app.before_request
+def set_variable():
+    g.cart_num = calculate_num_cart()
 
 @app.route('/', methods=["GET", "POST"])
 def home():
     items = Items.query.all()
-    return render_template('index.html', all_items=items)
+    return render_template('index.html', all_items=items, numc=g.cart_num)
 
 @app.route('/add-to-cart', methods=["GET", "POST"])
 def add_to_cart():
@@ -120,6 +123,9 @@ def add_item():
             return redirect(url_for('home'))
     return render_template('add-item.html', form=form)
 
+def calculate_num_cart():
+    cart = Cart.query.all()
+    return len(cart)
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
