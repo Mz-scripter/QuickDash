@@ -26,17 +26,23 @@
         <h2 class="title">REGISTER</h2>
         <form action="{{ url_for('register') }}" method="post">
             <div class="input-field">
-                <input type="text" name="username" required>
-                <label>Username</label>
+                <!-- <input type="text" name="username" required>
+                <label>Username</label> -->
+                {{ form.username }}
+                {{ form.username.label }}
             </div>
             <div class="input-field">
-                <input type="email" name="email" required>
-                <label>Email</label>
+                <!-- <input type="email" name="email" required>
+                <label>Email</label> -->
+                {{ form.email }}
+                {{ form.email.label }}
             </div>
           
             <div class="input-field">
-                <input type="password" name="password" minlength="8" required>
-                <label>Password</label>
+                <!-- <input type="password" name="password" minlength="8" required>
+                <label>Password</label> -->
+                {{ form.password }}
+                {{ form.password.label }}
             </div>
             <div class="forget">
                 <a href="#">Forget Password?</a>
