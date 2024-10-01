@@ -41,11 +41,11 @@
             {% with errors = get_flashed_messages(category_filter=['error']) %}
             {% if errors %}
             {% for err in errors %}
-            <p>{{ err }}</p>
+            <p style="color: #FAFAFA;">{{ err }}</p>
             {% endfor %}
             {% endif %}
             {% endwith %}
-            <button type="submit">REGISTER</button>
+            <button type="submit" style="margin-top: 15px;">REGISTER</button>
             <div class="login">
                 <p>Don't have an account?</p><a href="{{ url_for('register') }}">Register</a>
             </div>

@@ -61,6 +61,7 @@ def home():
     return render_template('index.html', all_items=items, numc=g.cart_num)
 
 @app.route('/add-to-cart', methods=["GET", "POST"])
+@login_required
 def add_to_cart():
     item_id = request.args.get('id')
     with app.app_context():
