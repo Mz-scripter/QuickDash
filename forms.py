@@ -16,4 +16,5 @@ class AddItemForm(FlaskForm):
     rating = StringField("Rating", validators=[DataRequired()])
     time = StringField("Time", validators=[DataRequired()])
     img_url = StringField("Dish Image Url", validators=[DataRequired(), URL()])
+    price = StringField("Price", validators=[DataRequired()])
     submit = SubmitField("Add Item")

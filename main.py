@@ -6,6 +6,7 @@ from forms import AddItemForm, RegisterForm, LoginForm
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from sqlalchemy.orm import relationship
+from sqlalchemy import func
 from functools import wraps
 import random
 
@@ -42,6 +43,7 @@ class Items(db.Model):
     rating = db.Column(db.String(10), nullable=False)
     time = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
+    price = db.Column(db.String(10), nullable=False)
 
 class Cart(db.Model):
     __tablename__ = 'cart'
@@ -51,6 +53,7 @@ class Cart(db.Model):
     rating = db.Column(db.String(10), nullable=False)
     time = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
+    price = db.Column(db.String(10), nullable=False)
 
 # with app.app_context():
 #     db.create_all()
@@ -84,9 +87,20 @@ def add_to_cart():
             dish = item_to_add.dish,
             rating = item_to_add.rating,
             time = item_to_add.time,
-            img_url = item_to_add.img_url
+            img_url = item_to_add.img_url,
+            price = item_to_add.price,
         )
         db.session.add(cart_item)
+        db.session.commit()
+        return redirect(request.referrer)
+
+@app.route('/remove_from_cart', methods=["GET", "POST"])
+@login_required
+def remove_cart():
+    item_id = request.args.get('id')
+    with app.app_context():
+        item_to_delete = Cart.query.get(item_id)
+        db.session.delete(item_to_delete)
         db.session.commit()
         return redirect(request.referrer)
 
@@ -136,7 +150,8 @@ def add_item():
                 dish = form.dish.data,
                 rating = form.rating.data,
                 time = form.time.data,
-                img_url = form.img_url.data
+                img_url = form.img_url.data,
+                price = form.price.data
             )
             db.session.add(new_item)
             db.session.commit()
@@ -146,7 +161,14 @@ def add_item():
 @app.route('/cart', methods=["GET", "POST"])
 @login_required
 def cart():
-    return render_template("cart.html", numc=g.cart_num)
+    cart_items = db.session.query(
+        Cart.dish,
+        Cart.img_url,
+        Cart.price,
+        func.count(Cart.dish).label('quantity')
+    ).filter(Cart.user_id == current_user.id)
+    cart_items = cart_items.group_by(Cart.dish).all()
+    return render_template("cart.html", numc=g.cart_num, cart_items=cart_items)
 
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
