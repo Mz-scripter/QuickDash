@@ -1,0 +1,132 @@
+body {
+    background-color: #EFF3F6;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+#checkout-container {
+    display: flex;
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.cart-items {
+    flex: 3;
+    background-color: #FBFBFC;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 150px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.price,
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity button {
+    background-color: #E9ECEF;
+    color: #160F29;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.quantity input {
+    width: 40px;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #E9ECEF;
+    border-radius: 5px;
+}
+
+.cart-summary {
+    flex: 1;
+    background-color: #EFF3F6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;   
+}
+
+.shipping form,
+.coupon {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+select,
+.input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #EFF3F6;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #160F29;
+    color: #EFF3F6;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cart-total {
+    background-color: #FBFBFC;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cart-total p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.cart-total button {
+    width: 100%;
+    background-color: #429EA6;
+    color: #160F29;
+    font-weight: bold;
+}
