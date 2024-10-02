@@ -143,6 +143,11 @@ def add_item():
             return redirect(url_for('home'))
     return render_template('add-item.html', form=form, numc=g.cart_num)
 
+@app.route('/cart', methods=["GET", "POST"])
+@login_required
+def cart():
+    return render_template("cart.html", numc=g.cart_num)
+
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
 def logout():

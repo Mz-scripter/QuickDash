@@ -1,0 +1,65 @@
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <p>{{numc}} items in your cart.</p>
+    <div id="checkout-container">
+        <!-- Start of Item -->
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/100x150" alt="">
+                <div class="product-info">
+                    <h3>Floral Print Wrap Dress</h3>
+                    <p>Color: Blue</p>
+                    <p>Size: 42</p>
+                </div>
+                <div class="price">$20.50</div>
+                <div class="quantity">
+                    <button class="btn">-</button>
+                    <input type="text" value="2">
+                    <button class="btn">+</button>
+                </div>
+                <div class="total-price">$41.00</div>
+            </div>
+        </div>
+        <!-- End of item -->
+
+        <div class="cart-summary">
+            <div class="shipping">
+                <form action="">
+                    <select name="" id="">
+                        <option value="">Country</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">State / City</option>
+                    </select>
+                    <input class="input" type="text" placeholder="ZIP Code">
+                    <button class="btn" type="button">Update</button>
+                </form>
+            </div>
+
+            <div class="coupon">
+                <h2>Coupon Code</h2>
+                <input class="input" type="text" placeholder="Coupon Code">
+                <button class="btn" type="button">Apply</button>
+            </div>
+
+            <div class="cart-total">
+                <h2>Cart Total</h2>
+                <p>Subtotal: $71.50</p>
+                <p>Discount: -$4.00</p>
+                <p>Total: $67.50</p>
+                <button class="btn" type="button">Apply</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
