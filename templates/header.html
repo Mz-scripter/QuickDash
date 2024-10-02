@@ -20,7 +20,7 @@
     <!-- Header Section -->
     <header>
         <div class="left-section">
-            <a href="index.html">
+            <a href="{{ url_for('home') }}">
                 <div class="logo-container">
                     <img src="{{ url_for('static', filename='icons/delivery-truck-delivery-svgrepo-com.svg') }}" alt="" class="logo">
                 </div>
@@ -39,7 +39,9 @@
             </div>
             <div class="profile-cart-container">
                 <div class="cart-container">
-                    <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
+                    <a href="{{ url_for('cart') }}">
+                        <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
+                    </a>
                     <span class="numc">{{ numc }}</span>
                 </div>
                 <div class="profile-container">
@@ -62,11 +64,11 @@
 
     <!-- Navbar for Smaller screens -->
     <nav id="navbar">
-        <a href="#" class="nav-link">
+        <a href="{{ url_for('home') }}" class="nav-link">
             <img src="{{ url_for('static', filename='icons/home-svgrepo-com.svg') }}" alt="" class="nav-icon nav-home">
             <span class="nav-text">HOME</span>            
         </a>
-        <a href="#" class="nav-link nav-cart">
+        <a href="{{ url_for('cart') }}" class="nav-link nav-cart">
             <img src="{{ url_for('static', filename='icons/cart-svgrepo-com.svg') }}" alt="" class="nav-icon">
             <span class="numc">{{ numc }}</span>
             <span class="nav-text">CART</span>
