@@ -48,6 +48,7 @@ class Items(db.Model):
 class Cart(db.Model):
     __tablename__ = 'cart'
     id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     dish = db.Column(db.String(250), nullable=False)
     rating = db.Column(db.String(10), nullable=False)
@@ -55,8 +56,8 @@ class Cart(db.Model):
     img_url = db.Column(db.String(250), nullable=False)
     price = db.Column(db.String(10), nullable=False)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.before_request
 def set_variable():
@@ -83,6 +84,7 @@ def add_to_cart():
         user_id = User.query.get(current_user.id)
         item_to_add = db.session().query(Items).get(item_id)
         cart_item = Cart(
+            item_id = item_to_add.id,
             user_id = user_id.id,
             dish = item_to_add.dish,
             rating = item_to_add.rating,
@@ -94,15 +96,22 @@ def add_to_cart():
         db.session.commit()
         return redirect(request.referrer)
 
-@app.route('/remove_from_cart', methods=["GET", "POST"])
+@app.route('/remove_item/<int:item_id>', methods=["GET", "POST"])
 @login_required
-def remove_cart():
-    item_id = request.args.get('id')
+def remove_item(item_id):
     with app.app_context():
-        item_to_delete = Cart.query.get(item_id)
-        db.session.delete(item_to_delete)
-        db.session.commit()
+        cart_item = Cart.query.filter_by(user_id=current_user.id, item_id=item_id).first()
+        if cart_item:
+            total_quantity = db.session.query(func.count(Cart.id)).filter_by(user_id=current_user.id, item_id=item_id).scalar()
+            if total_quantity > 1:
+                item_to_delete = Cart.query.filter_by(user_id=current_user.id, item_id=item_id).first()
+                db.session.delete(item_to_delete)
+            else:
+                item_to_delete = Cart.query.filter_by(user_id=current_user.id, item_id=item_id).first()
+                db.session.delete(item_to_delete)
+            db.session.commit()
         return redirect(request.referrer)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -165,6 +174,7 @@ def cart():
         Cart.dish,
         Cart.img_url,
         Cart.price,
+        Cart.item_id,
         func.count(Cart.dish).label('quantity')
     ).filter(Cart.user_id == current_user.id)
     cart_items = cart_items.group_by(Cart.dish).all()
