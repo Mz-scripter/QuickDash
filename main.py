@@ -6,7 +6,7 @@ from forms import AddItemForm, RegisterForm, LoginForm
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from sqlalchemy.orm import relationship
-from sqlalchemy import func
+from sqlalchemy import func, cast, Integer
 from functools import wraps
 import random
 
@@ -173,7 +173,7 @@ def cart():
     cart_items = db.session.query(
         Cart.dish,
         Cart.img_url,
-        Cart.price,
+        cast(Cart.price, Integer).label('price'),
         Cart.item_id,
         func.count(Cart.dish).label('quantity')
     ).filter(Cart.user_id == current_user.id)
