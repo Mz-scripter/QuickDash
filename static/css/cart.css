@@ -52,6 +52,12 @@ p {
 
 .price,
 .total-price {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.price,
+.total-price {
     font-size: 18px;
     font-weight: bold;
 }

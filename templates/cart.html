@@ -12,20 +12,21 @@
     <p>{{numc}} items in your cart.</p>
     <div id="checkout-container">
         <div class="cart-items">
+            {% set ns = namespace(total_price=0) %}
             {% for cart_item in cart_items %}
             <!-- Start of Item -->
             <div class="cart-item">
                 <img src="{{ cart_item.img_url }}" alt="">
                 <div class="product-info">
                     <h3>{{ cart_item.dish }}</h3>
-                    <p>{{ cart_item.time }}</p>
 
                 </div>
-                <div class="price">₦{{ cart_item.price }}</div>
+                <div class="price">₦ {{ cart_item.price }}</div>
                 <div class="quantity">
-                    <input type="text" value="{{ cart_item.quantity }}">
+                    <input type="text" value="{{ cart_item.quantity }}" disabled>
                 </div>
-                <div class="total-price">$41.00</div>
+                <div class="total-price">₦ {{ cart_item.price * cart_item.quantity }}</div>
+                {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
                 <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="btn remove_btn">Remove from Cart</a>
             </div>
             <!-- End of item -->
@@ -55,9 +56,9 @@
 
             <div class="cart-total">
                 <h2>Cart Total</h2>
-                <p>Subtotal: $71.50</p>
-                <p>Discount: -$4.00</p>
-                <p>Total: $67.50</p>
+                <p>Subtotal:₦ {{ns.total_price}}</p>
+                <p>Discount: -₦4.00</p>
+                <p>Total: ₦ {{ ns.total_price - 4}}</p>
                 <button class="btn" type="button">Apply</button>
             </div>
         </div>
