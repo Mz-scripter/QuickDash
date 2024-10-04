@@ -4,64 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickDash |Cart</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
-    <title>Checkout</title>
 </head>
 <body>
-    <h1>Checkout</h1>
-    <p>{{numc}} items in your cart.</p>
-    <div id="checkout-container">
-        <div class="cart-items">
-            {% set ns = namespace(total_price=0) %}
-            {% for cart_item in cart_items %}
-            <!-- Start of Item -->
-            <div class="cart-item">
-                <img src="{{ cart_item.img_url }}" alt="">
-                <div class="product-info">
-                    <h3>{{ cart_item.dish }}</h3>
-
+    <div class="cart-item-container">
+        <h2>Cart (numc)</h2>
+        <hr class="section-divider">
+        {% set ns = namespace(total_price=0) %}
+        {% for cart_item in cart_items %}
+        <!-- Cart item -->
+        <div class="cart-item">
+            <div class="top-section">
+                <div class="prod-details">
+                    <img src="{{ cart_item.img_url }}" alt="" class="prod-img">
+                    <div class="prod-title">
+                        <div class="prod-name">{{ cart_item.dish }}</div>
+                        <div class="seller"><span class="seller-name">Seller: </span> Lorem, ipsum.</div>
+                        <div class="price small">₦ {{ cart_item.price }}</div>
+                    </div>
                 </div>
-                <div class="price">₦ {{ cart_item.price }}</div>
-                <div class="quantity">
-                    <input type="text" value="{{ cart_item.quantity }}" disabled>
+                <div class="price big">₦ {{ cart_item.price }}</div>
+            </div>
+            <div class="bottom-section">
+                <div class="remove">
+                    <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="rem-button btn">
+                        <img src="{{ url_for('static', filename='icons/remove.svg') }}" alt="" class="rem-icon icon">
+                        Remove
+                    </a>
                 </div>
-                <div class="total-price">₦ {{ cart_item.price * cart_item.quantity }}</div>
-                {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
-                <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="btn remove_btn">Remove from Cart</a>
-            </div>
-            <!-- End of item -->
-            {% endfor %}
-        </div>
-        
-
-        <div class="cart-summary">
-            <div class="shipping">
-                <form action="">
-                    <select name="" id="">
-                        <option value="">Country</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="">State / City</option>
-                    </select>
-                    <input class="input" type="text" placeholder="ZIP Code">
-                    <button class="btn" type="button">Update</button>
-                </form>
-            </div>
-
-            <div class="coupon">
-                <h2>Coupon Code</h2>
-                <input class="input" type="text" placeholder="Coupon Code">
-                <button class="btn" type="button">Apply</button>
-            </div>
-
-            <div class="cart-total">
-                <h2>Cart Total</h2>
-                <p>Subtotal:₦ {{ns.total_price}}</p>
-                <p>Discount: -₦4.00</p>
-                <p>Total: ₦ {{ ns.total_price - 4}}</p>
-                <button class="btn" type="button">Apply</button>
+                <div class="add-sub">
+                    <a href="#" class="sub btn">-</a>
+                    <input type="text" class="quantity" value="{{ cart_item.quantity }}" disabled>
+                    {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
+                    <a href="#" class="add btn">+</a>
+                </div>
             </div>
         </div>
+        <hr class="section-divider">
+         <!-- End of Cart item -->
+        {% endfor %}
+    </div>
+    <div class="summary-container">
+        <h2>Cart Summary</h2>
+        <hr class="section-divider">
+        <div class="subtotal">
+            <span>Subtotal</span>
+            <div class="total">₦ {{ ns.total_price }}</div>
+        </div>
+        <hr class="section-divider">
+        <a href="#" class="btn">Checkout ({{ ns.total_price }}) </a>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
