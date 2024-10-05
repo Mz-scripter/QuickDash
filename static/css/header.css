@@ -11,7 +11,9 @@ header {
     right: 0;
     margin-bottom: 10px;
     z-index: 100;
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 #lower-search-bar {
@@ -74,27 +76,30 @@ a {
 }
 
 .search:focus-within {
-    outline: 1.5px solid rgb(93, 93, 93);
+    outline: 1.5px solid rgb(66, 66, 66);
 }
 
 .search-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 45px;
     height: 40px;
     border-radius: 3px;
     position: absolute;
     left: 0;  
-    margin-top: 15px;
+    /* margin-top: 15px;
     margin-left: 4px;
-    margin-right: 2px;
+    margin-right: 2px; */
 }
 
 .search-icon {
-    width: 26px;
+    width: 18px;
     border-radius: 3px;
 }
 
 .search-bar {
-    padding-left: 30px;
+    padding-left: 35px;
     height: 33px;
     background-color: rgb(228, 228, 228);
     border: none;

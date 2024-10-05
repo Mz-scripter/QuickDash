@@ -1,17 +1,22 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+
 }
 
 
 body {
-    /* padding: 100px auto; */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    background-color: #C7EEFF;
-    background-position: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.numc {
+    padding: 7px;
 }
 
 .account-details {
@@ -34,7 +39,7 @@ body {
 }
 
 .details {
-    color: gray;
+    color: #FAFAFA;
     font-weight: 300;
 }
 
