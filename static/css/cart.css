@@ -3,7 +3,7 @@ body {
     background-color: #EFF3F6;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
     display: flex;
     gap: 20px;
 }
@@ -78,6 +78,11 @@ h2 {
 
 .seller-name {
     color: grey;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 17px;
 }
 
 .bottom-section {

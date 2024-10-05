@@ -112,6 +112,13 @@ def remove_item(item_id):
             db.session.commit()
         return redirect(request.referrer)
 
+@app.route('/remove-all/<int:item_id>', methods=["GET", "POST"])
+@login_required
+def remove_all(item_id):
+    with app.app_context():
+        Cart.query.filter_by(user_id=current_user.id, item_id=item_id).delete()
+        db.session.commit()
+        return redirect(request.referrer)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
