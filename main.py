@@ -187,6 +187,11 @@ def cart():
     cart_items = cart_items.group_by(Cart.dish).all()
     return render_template("cart.html", numc=g.cart_num, cart_items=cart_items)
 
+@app.route('/profile', methods=["GET", "POST"])
+@login_required
+def profile():
+    return render_template('profile.html', numc=g.cart_num, name=current_user.username, email=current_user.email)
+
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
 def logout():
