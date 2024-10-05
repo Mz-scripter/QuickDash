@@ -91,19 +91,6 @@ h2 {
     justify-content: space-between;
 }
 
-.btn {
-    padding: 5px 15px 5px 15px;
-    background-color: #FAFAFA;
-    border-radius: 3px;
-    border: 1.5px solid #1D242B;
-}
-
-.rem-button {
-    display: flex;
-    align-items: center;
-    color: red;
-}
-
 .rem-icon {
     margin-right: 5px;
 }
