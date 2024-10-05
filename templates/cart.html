@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="cart-item-container">
-        <h2>Cart (numc)</h2>
+        <h2>Cart ({{ numc }})</h2>
         <hr class="section-divider">
         {% set ns = namespace(total_price=0) %}
         {% for cart_item in cart_items %}
@@ -28,16 +28,16 @@
             </div>
             <div class="bottom-section">
                 <div class="remove">
-                    <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="rem-button btn">
+                    <a href="{{ url_for('remove_all', item_id=cart_item.item_id) }}" class="rem-button btn">
                         <img src="{{ url_for('static', filename='icons/remove.svg') }}" alt="" class="rem-icon icon">
                         Remove
                     </a>
                 </div>
                 <div class="add-sub">
-                    <a href="#" class="sub btn">-</a>
+                    <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="sub btn">-</a>
                     <input type="text" class="quantity" value="{{ cart_item.quantity }}" disabled>
                     {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
-                    <a href="#" class="add btn">+</a>
+                    <a href="{{ url_for('add_to_cart', id=cart_item.item_id) }}" class="add btn">+</a>
                 </div>
             </div>
         </div>
@@ -50,10 +50,10 @@
         <hr class="section-divider">
         <div class="subtotal">
             <span>Subtotal</span>
-            <div class="total">₦ {{ ns.total_price }}</div>
+            <div class="total price">₦ {{ ns.total_price }}</div>
         </div>
         <hr class="section-divider">
-        <a href="#" class="btn">Checkout ({{ ns.total_price }}) </a>
+        <a href="#" class="btn price">Checkout (₦ {{ ns.total_price }}) </a>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
