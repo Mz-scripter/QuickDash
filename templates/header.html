@@ -31,13 +31,13 @@
         </div>
 
         <div class="right-section">
-            <form action="" method="post" class="search-form">
+            <form action="{{ url_for('search') }}" method="post" class="search-form">
                 <div class="search">
                     <span class="search-icon-container">
                         
                         <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
                     </span>
-                    <input type="text" class="search-bar" placeholder="Search QuickDash">
+                    <input type="text" class="search-bar" name="search" placeholder="Search QuickDash">
                 </div>
                 <button type="submit" class="btn">Search</button>
             </form>
