@@ -62,6 +62,11 @@ a {
     width: 40%;
 }
 
+.search-form {
+    display: flex;
+    flex: 4;
+}
+
 .search {
     display: flex;
     align-items: center;
@@ -84,7 +89,7 @@ a {
     align-items: center;
     justify-content: center;
     width: 45px;
-    height: 40px;
+    height: 33px;
     border-radius: 3px;
     position: absolute;
     left: 0;  
@@ -157,9 +162,12 @@ a {
 /* End of Rigth Section */
 
 /* Media query for search bar */
-@media (max-width: 900px) {
-    .search {
-        display: none;
+@media (max-width: 950px) {
+    .search-form {
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        right: 0;
     }
 
     .profile-cart-container{
@@ -201,7 +209,7 @@ a {
 }
 
 @media (max-width: 500px) {
-    .right-section {
+    .profile-cart-container {
         display: none;
     }
 
