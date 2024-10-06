@@ -1,86 +1,38 @@
-.card-section   {
-    margin-left: 20px;
-    margin-right: 110px;
-    max-width: 1000px;
+@import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap');
+
+.hero {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px;
+    gap: 20px;
+}
+
+.hero-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 h1 {
-    font-weight: 400;
-    font-style: normal;
-    font-size: 23px;
-    color: #1D242B;
-}
-
-.cards {
+    margin: 0;
+    width: 100%;
+    font-family: "Qwitcher Grypen", cursive;
+    position: absolute;
     display: flex;
-    overflow-x: auto;
-    gap: 30px;
-    scroll-behavior: smooth;
-    justify-content: space-between;
-}
-
-.cards::-webkit-scrollbar {
-    display: none;
-}
-
-.card {
-    min-width: 116px;
-    height: 116px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
-    border-radius: 4px;
-    color: #1D242B;
-    font-size: 11pt;
-    letter-spacing: 0.5px;
+    color: #FAFAFA;
+    bottom: 3px;
 }
 
-.card-icon {
-    width: 36px;
-    margin-bottom: 10px;
-}
-
-.restaurant {
-    background-color: #FFAAC940;
-}
-
-.supermarket {
-    background-color: #FFF3ED;
-}
-
-.pharmacy {
-    background-color: #EBF4FF;
-}
-
-.hospital {
-    background-color: #02C27F23;
-}
-
-.drinks {
-    background-color: #FFF8E4;
-}
-
-.retail {
-    background-color: #DAEFE3;
-}
-
-.african-meals {
-    background-color: #EBF4FF;
-}
-
-@media (max-width: 900px) {
-    .card-section {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    h1 {
-        font-size: 18px;
-    }
-
-    .card {
-        min-width: 100px;
-        height: 100px;
+@media (max-width: 1024px) {
+    .hero {
+        width: 90%;
     }
 }
