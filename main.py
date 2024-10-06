@@ -56,8 +56,8 @@ class Cart(db.Model):
     img_url = db.Column(db.String(250), nullable=False)
     price = db.Column(db.String(10), nullable=False)
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 @app.before_request
 def set_variable():
@@ -71,6 +71,15 @@ def home():
     items = Items.query.all()
     random.shuffle(items)
     return render_template('index.html', all_items=items, numc=g.cart_num)
+
+@app.route('/search', methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        with app.app_context():
+            search = request.form['search']
+            search_results = Items.query.filter(Items.dish.ilike(f"%{search}%")).all()
+            return render_template('index.html',all_items=search_results)
+    return redirect(url_for('home'))
 
 @app.route('/header', methods=["GET", "POST"])
 def header():
