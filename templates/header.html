@@ -31,13 +31,17 @@
         </div>
 
         <div class="right-section">
-            <div class="search">
-                <span class="search-icon-container">
-                    
-                    <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
-                </span>
-                <input type="text" class="search-bar" placeholder="Search QuickDash">
-            </div>
+            <form action="" method="post" class="search-form">
+                <div class="search">
+                    <span class="search-icon-container">
+                        
+                        <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
+                    </span>
+                    <input type="text" class="search-bar" placeholder="Search QuickDash">
+                </div>
+                <button type="submit" class="btn">Search</button>
+            </form>
+
             <div class="profile-cart-container">
                 <div class="cart-container">
                     <a href="{{ url_for('cart') }}">
@@ -53,14 +57,6 @@
             </div>
         </div>
        
-        <!-- Lower Search Bar -->
-        <div class="search" id="lower-search-bar">
-            <span class="search-icon-container">
-                <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
-            </span>
-            <input type="text" class="search-bar" placeholder="Search QuickDash">
-        </div>
-         <!-- End of Lower Search Bar -->
 
     </header>
     <!-- End of Header Section -->
