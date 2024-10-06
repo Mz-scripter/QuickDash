@@ -1,43 +1,10 @@
 {% include "header.html" %}
- <!-- Card Section -->
-     <section class="card-section">
-        <h1>Explore Categories</h1>
-        <div class="cards">
-
-            <div class="card restaurant">
-                <img src="{{ url_for('static', filename='icons/restaurant-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">Restaurant</span>
-            </div>
-
-            <div class="card supermarket">
-                <img src="{{ url_for('static', filename='icons/shopping-basket-supermarket-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">Supermarket</span>
-            </div>
-
-            <div class="card pharmacy">
-                
-                <img src="{{ url_for('static', filename='icons/hospital-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">Pharmacy</span>
-            </div>
-
-            <div class="card drinks">
-                <img src="{{ url_for('static', filename='icons/drink-soft-drink-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">Drinks</span>
-            </div>
-
-            <div class="card retail">
-                <img src="{{ url_for('static', filename='icons/shopping-store-shopper-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">Retails</span>
-            </div>
-
-            <div class="card african-meals">
-                <img src="{{ url_for('static', filename='icons/food-hor-mok-svgrepo-com.svg') }}" alt="" class="card-icon">
-                <span class="card-name">African Meals</span>
-            </div>
-
-        </div>
-     </section>
-     <!-- End of Card Section -->
+<!-- Intro -->
+ <div class="hero">
+    <img src="{{ url_for('static', filename='images/menu-hero.jpg') }}" alt="" class="hero-img">
+    <h1>Craving something delicious? You're in the right place.</h1>
+ </div>
+<!-- End of Intro -->
 
       <!-- Featured Dishes Section -->
         <section id="featured-dishes">
