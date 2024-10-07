@@ -9,6 +9,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import func, cast, Integer
 from functools import wraps
 import random
+import time
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "LXS2U[j&'iMg<)5R~@!Q%0TKn"
@@ -22,6 +24,9 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+FLW_PUBLIC_KEY = "FLWPUBK_TEST-ed3c41c9fd4929475cc8d2a642a795cf-X"
+FLW_SECRET_KEY = "FLWSECK_TEST-4b6c7cd2d1b1328a353f78d1b3f4749a-X"
+FLW_REDIRECT_URL = "https://github.com/Mzed-io"
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -213,6 +218,50 @@ def logout():
 def calculate_num_cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()
     return len(cart_items)
+
+@app.route('/success', methods=["GET", "POST"])
+@login_required
+def success():
+    return render_template('success.html')
+
+@app.route('/failure', methods=["GET", "POST"])
+@login_required
+def failure():
+    return render_template('failure.html')
+
+@app.route('/checkout', methods=["GET", "POST"])
+@login_required
+def checkout():
+    if request.method == "POST":
+        total_amount = request.form['total_price']
+        headers = {
+            'Authorization': f"Bearer {FLW_SECRET_KEY}",
+            'Content-Type': 'application/json'
+        }
+        payment_data = {
+            "tx_ref": f"order_{current_user.id}_{int(time.time())}",
+            "amount": total_amount,
+            "currency": "NGN",
+            "redirect_url": url_for('success'),
+            "customer": {
+                "email": current_user.email,
+                "name": current_user.username
+            },
+            "payment_options": "card, banktransfer",
+            "customizations": {
+                "title": "Your Food Order",
+                "description": "Payment for your food order"
+            }
+        }
+        response = requests.post('https://api.flutterwave.com/v3/payments', json=payment_data, headers=headers)
+        response_data = response.json()
+
+        if response_data.get('status') == 'success':
+            return redirect(url_for('success'))
+        else:
+            flash('An error occured while initiating payment. Please try again.', 'danger')
+            return redirect(url_for('failure'))
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
