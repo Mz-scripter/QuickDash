@@ -1,0 +1,31 @@
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1 {
+            font-family: "Roboto", arial;
+            color: black;
+            position: relative;
+            text-align: center;
+            font-weight: 400;
+        }
+        body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <title>QuickDash | No Result Found</title>
+</head>
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='icons/search-err.svg') }}" alt="">
+        <h1>Sorry, {{ search }} is unavailable</h1>
+    </div>
+    
+</body>
+</html>

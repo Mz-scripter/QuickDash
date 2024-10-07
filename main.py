@@ -78,6 +78,8 @@ def search():
         with app.app_context():
             search = request.form['search']
             search_results = Items.query.filter(Items.dish.ilike(f"%{search}%")).all()
+            if not search_results:
+                return render_template("no-result.html", search=search)
             return render_template('index.html',all_items=search_results)
     return redirect(url_for('home'))
 
