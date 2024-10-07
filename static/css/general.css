@@ -14,6 +14,16 @@ button {
     border-radius: 3px;
 }
 
+.flxcent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flx {
+    display: flex;
+}
+
 @media (max-width: 900px) {
     body {
         padding-top: 148px;

@@ -1,9 +1,6 @@
 #featured-dishes {
     width: 85%;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 40px auto 30px auto;
 }
 
 .restaurant-name {
@@ -17,22 +14,20 @@
     gap: 3%;
 }
 
-
 .dish-item {
-    display: flex;
     flex-direction: column;
     max-width: 305px;
     max-height: 298px;
     border-radius: 3%;
     padding: 6px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 
 
 .dish-item:active,
 .dish-item:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
@@ -90,13 +85,11 @@
 }
 
 .bottom-dish-section {
-    display: flex;
     flex-direction: column;
 
 }
 
 .name-rating-section {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 25px;
@@ -108,9 +101,6 @@
 }
 
 .dish-rating {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 12px;
 }
 
@@ -121,15 +111,8 @@
 }
 
 .delivery-time-section {
-    display: flex;
     justify-content: flex-start;
     align-items: center;
-}
-
-.time-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .time-icon {

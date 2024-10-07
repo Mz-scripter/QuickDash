@@ -1,5 +1,4 @@
 header {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     height: 75px;
@@ -11,7 +10,6 @@ header {
     right: 0;
     margin-bottom: 10px;
     z-index: 100;
-    /* background-color: #FAFAFA; */
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
@@ -23,7 +21,6 @@ header {
 /* Left Section */
 
 .left-section {
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -56,21 +53,14 @@ a {
 
 /* Right Section */
 .right-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 40%;
 }
 
 .search-form {
-    display: flex;
     flex: 4;
 }
 
 .search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: rgb(228, 228, 228);
     height: 40px;
     border-radius: 3px;
@@ -85,9 +75,6 @@ a {
 }
 
 .search-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 45px;
     height: 33px;
     border-radius: 3px;
@@ -112,16 +99,10 @@ a {
 
 .profile-cart-container {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .numc {
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     top: -10px;
     right: -10px;
     font-size: 12px;
@@ -135,13 +116,6 @@ a {
 
 .cart-container {
     position: relative;
-}
-
-.cart-container,
-.profile-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .cart,
@@ -207,7 +181,7 @@ a {
 
 @media (max-width: 500px) {
     .profile-cart-container {
-        display: none;
+        visibility: hidden;
     }
 
     header {

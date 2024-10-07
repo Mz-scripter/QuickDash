@@ -15,10 +15,7 @@
         bottom: 3px;
         left: 10px;
         right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 5px 10px 5px 10px;
     }
 
     .nav-link{

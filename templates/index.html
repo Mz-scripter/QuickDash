@@ -2,7 +2,7 @@
 <!-- Intro -->
  <div class="hero">
     <img src="{{ url_for('static', filename='images/menu-hero.jpg') }}" alt="" class="hero-img">
-    <h1>Craving something delicious? You're in the right place.</h1>
+    <h1 class="flxcent">Craving something delicious? You're in the right place.</h1>
  </div>
 <!-- End of Intro -->
 
@@ -11,20 +11,20 @@
             <div class="restaurant-dishes">
                 {% for item in all_items %}
                 <!-- Dish Card Item -->
-                <div class="dish-item">
+                <div class="dish-item flx">
                     <div class="top-dish-section">  
                         <img src="{{ item.img_url }}" alt="" class="dish-img">
                     </div>
-                    <div class="bottom-dish-section">
-                        <div class="name-rating-section">
+                    <div class="bottom-dish-section flx">
+                        <div class="name-rating-section flx">
                             <span class="dish-name">{{ item.dish }}</span>
-                            <span class="dish-rating">
+                            <span class="dish-rating flxcent">
                                 <span class="dish-rate">{{ item.rating }}</span>
                                 <span class="star-emoji">&#9733;</span>
                             </span>
                         </div>
-                        <div class="delivery-time-section">
-                            <span class="time-icon-container"> 
+                        <div class="delivery-time-section flx">
+                            <span class="time-icon-container flxcent"> 
                                 <img src="{{ url_for('static', filename='icons/time-svgrepo-com.svg') }}" alt="" class="time-icon">
                             </span>
                             <span class="time-duration">

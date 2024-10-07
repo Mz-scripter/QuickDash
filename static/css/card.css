@@ -2,8 +2,7 @@
 
 .hero {
     width: 45%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -23,10 +22,7 @@ h1 {
     width: 100%;
     font-family: "Qwitcher Grypen", cursive;
     position: absolute;
-    display: flex;
-    align-items: center;
     text-align: center;
-    justify-content: center;
     color: #FAFAFA;
     bottom: 3px;
 }
