@@ -1,12 +1,30 @@
+{% include "header.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .error {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .err-icon {
+            width: 100px;
+        }
+    </style>
     <title>QuickDash | Payment Failed</title>
 </head>
 <body>
-    <h1>The payment was unsuccessful</h1>
-    <p>Please, try again later.</p>
+    <div class="error">
+        <img src="{{ url_for('static', filename='icons/error.svg') }}" alt="" class="err-icon">
+        <h3>The payment was unsuccessful</h3>
+        <p>Please, try again later.</p>
+    </div>
+    
 </body>
 </html>

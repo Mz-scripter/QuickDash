@@ -18,13 +18,19 @@
             align-items: center;
             justify-content: center;
         }
+        .no-res {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
     <title>QuickDash | No Result Found</title>
 </head>
 <body>
-    <div>
+    <div class="no-res">
         <img src="{{ url_for('static', filename='icons/search-err.svg') }}" alt="">
-        <h1>Sorry, {{ search }} is unavailable</h1>
+        <h1>Sorry, {{ search }} is unavailable.</h1>
     </div>
     
 </body>
