@@ -5,11 +5,7 @@
 
 }
 
-
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     width: 100%;
     padding: 0 10px;
@@ -22,7 +18,6 @@ body {
 .account-details {
     height: 300px;
     align-self: center;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;

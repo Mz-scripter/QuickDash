@@ -19,8 +19,8 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <div class="left-section">
+    <header class="flx">
+        <div class="left-section flx">
             <a href="{{ url_for('home') }}">
                 <div class="logo-container">
                     <img src="{{ url_for('static', filename='icons/delivery-truck-delivery-svgrepo-com.svg') }}" alt="" class="logo">
@@ -30,10 +30,10 @@
             
         </div>
 
-        <div class="right-section">
-            <form action="{{ url_for('search') }}" method="post" class="search-form">
-                <div class="search">
-                    <span class="search-icon-container">
+        <div class="right-section flxcent">
+            <form action="{{ url_for('search') }}" method="post" class="search-form flx">
+                <div class="search flxcent">
+                    <span class="search-icon-container flxcent">
                         
                         <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
                     </span>
@@ -42,14 +42,14 @@
                 <button type="submit" class="btn">Search</button>
             </form>
 
-            <div class="profile-cart-container">
-                <div class="cart-container">
+            <div class="profile-cart-container flxcent">
+                <div class="cart-container flxcent">
                     <a href="{{ url_for('cart') }}">
                         <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
                     </a>
-                    <span class="numc">{{ numc }}</span>
+                    <span class="numc flxcent">{{ numc }}</span>
                 </div>
-                    <div class="profile-container">
+                    <div class="profile-container flxcent">
                         <a href="{{ url_for('profile') }}">
                             <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt=""    class="profile">
                         </a>
