@@ -24,8 +24,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
-FLW_PUBLIC_KEY = "FLWPUBK_TEST-ed3c41c9fd4929475cc8d2a642a795cf-X"
-FLW_SECRET_KEY = "FLWSECK_TEST-4b6c7cd2d1b1328a353f78d1b3f4749a-X"
+FLW_PUBLIC_KEY = "FLWPUBK_TEST-5de963cfabeed4edab5b8b6a2f5a6984-X"
+FLW_SECRET_KEY = "FLWSECK_TEST-10e26c3e22d3883f6258bd342016396b-X"
 FLW_REDIRECT_URL = "https://github.com/Mzed-io"
 
 @login_manager.user_loader
@@ -257,7 +257,10 @@ def checkout():
         response_data = response.json()
 
         if response_data.get('status') == 'success':
-            return redirect(url_for('success'))
+            with app.app_context():
+                Cart.query.filter_by(user_id=current_user.id).delete()
+                db.session.commit()
+                return redirect(url_for('success'))
         else:
             flash('An error occured while initiating payment. Please try again.', 'danger')
             return redirect(url_for('failure'))

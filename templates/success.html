@@ -4,10 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      
+        .order {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .order p {
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
     <title>QuickDash | Payment Successful</title>
 </head>
 <body>
-    <h1>Thank you for your payment</h1>
-    <p>Your order has been placed successfully</p>
+    <div class="order">
+        <img src="{{ url_for('static', filename='icons/checkmark.svg') }}" alt="" class="check-icon">
+        <p>Your order has been placed successfully</p>
+    </div>
+    
 </body>
 </html>
