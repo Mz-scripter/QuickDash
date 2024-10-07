@@ -53,7 +53,10 @@
             <div class="total price">₦ {{ ns.total_price }}</div>
         </div>
         <hr class="section-divider">
-        <a href="#" class="btn price">Checkout (₦ {{ ns.total_price }}) </a>
+        <form action="{{ url_for('checkout') }}" method="post">
+            <input type="hidden" name="total_price" value="{{ ns.total_price }}">
+            <button type="submit" class="btn price">Checkout (₦ {{ ns.total_price }}) </button>
+        </form>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
