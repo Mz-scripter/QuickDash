@@ -101,18 +101,7 @@ a {
     flex: 1;
 }
 
-.numc {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 12px;
-    background-color: rgb(250, 66, 66);
-    color: #FAFAFA;
-    padding: 4px;
-    height: 10px;
-    width: 10px;
-    border-radius: 10px;
-}
+
 
 .cart-container {
     position: relative;
