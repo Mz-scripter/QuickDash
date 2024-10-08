@@ -4,6 +4,10 @@
     background-position: center;
 }
 
+body {
+    padding-bottom: 80px;
+}
+
 h1 {
     color: #FAFAFA;
     font-size: 6vw;
@@ -13,5 +17,5 @@ h1 {
 .numc {
     width: 10px;
     height: 10px;
-    /* padding: 8px; */
+    padding: 8px;
 }

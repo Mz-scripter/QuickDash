@@ -188,7 +188,12 @@ def add_item():
             db.session.add(new_item)
             db.session.commit()
             return redirect(url_for('home'))
-    return render_template('add-item.html', form=form, numc=g.cart_num)
+    first_user = User.query.order_by(User.id).first()
+    second_user = User.query.order_by(User.id).offset(1).first()
+    if current_user.id == first_user.id or current_user.id == second_user.id:
+        return render_template('add-item.html', form=form, numc=g.cart_num)
+    else:
+        abort(404)
 
 @app.route('/cart', methods=["GET", "POST"])
 @login_required
