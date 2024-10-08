@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 body {
@@ -12,7 +11,8 @@ body {
 }
 
 .numc {
-    padding: 7px;
+
+    padding: 8px;
 }
 
 .account-details {
@@ -45,4 +45,21 @@ body {
 .det {
     font-weight: 400;
 }
+
+@media (max-width: 500px) {
+    .numc {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        font-size: 12px;
+        background-color: rgb(250, 66, 66);
+        color: #FAFAFA;
+        padding: 10px;
+        height: 10px;
+        width: 10px;
+        border-radius: 10px;
+    }
+}
+
+
 
