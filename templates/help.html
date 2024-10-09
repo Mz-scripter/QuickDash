@@ -8,12 +8,12 @@
     <title>QuickDash | Help & FAQ's</title>
 </head>
 <body class="flxcent">
-    <div class="contact-form flxcent">
+    <form action="{{ url_for('help') }}" method="post" class="contact-form flxcent">
         <input type="text" name="name" placeholder="Name" class="contact-input" required>
         <input type="email" name="email" placeholder="Email" class="contact-input" required>
         <textarea name="message" placeholder="Message" class="contact-input" required rows="5"></textarea>
-        <submit class="btn">Submit</submit>
-    </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
     <div class="contact-img-container">
         <img src="{{ url_for('static', filename='images/help-bg.jpg') }}" class="contact-img" alt="Background Image">
     </div>

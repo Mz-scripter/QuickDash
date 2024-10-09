@@ -11,6 +11,7 @@ from functools import wraps
 import random
 import time
 import requests
+import smtplib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "LXS2U[j&'iMg<)5R~@!Q%0TKn"
@@ -27,6 +28,9 @@ login_manager.login_view = "login"
 FLW_PUBLIC_KEY = "FLWPUBK_TEST-5de963cfabeed4edab5b8b6a2f5a6984-X"
 FLW_SECRET_KEY = "FLWSECK_TEST-10e26c3e22d3883f6258bd342016396b-X"
 FLW_REDIRECT_URL = "https://github.com/Mzed-io"
+
+password = "bgxt uqqx ipsw avws"
+my_email = "adekomuheez567@gmail.com"
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -221,6 +225,16 @@ def logout():
 
 @app.route('/help', methods=["GET", "POST"])
 def help():
+    if request.method == "POST":
+        with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+            connection.starttls()
+            connection.login(user=my_email, password=password)
+            connection.sendmail(
+                from_addr=my_email, 
+                to_addrs=my_email, 
+                msg=f"Subject:QuickDash| Help\n\nName: {request.form['name']}\n Email: {request.form['email']}\n Message: {request.form['message']}"
+            )
+            return redirect(url_for('help'))
     return render_template("help.html", numc=g.cart_num)
 
 @login_required
