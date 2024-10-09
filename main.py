@@ -219,6 +219,10 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route('/help', methods=["GET", "POST"])
+def help():
+    return render_template("help.html", numc=g.cart_num)
+
 @login_required
 def calculate_num_cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()

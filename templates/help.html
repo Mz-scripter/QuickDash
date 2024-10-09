@@ -1,0 +1,21 @@
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+    <title>QuickDash | Help & FAQ's</title>
+</head>
+<body class="flxcent">
+    <div class="contact-form flxcent">
+        <input type="text" name="name" placeholder="Name" class="contact-input" required>
+        <input type="email" name="email" placeholder="Email" class="contact-input" required>
+        <textarea name="message" placeholder="Message" class="contact-input" required rows="5"></textarea>
+        <submit class="btn">Submit</submit>
+    </div>
+    <div class="contact-img-container">
+        <img src="{{ url_for('static', filename='images/help-bg.jpg') }}" class="contact-img" alt="Background Image">
+    </div>
+</body>
+</html>
