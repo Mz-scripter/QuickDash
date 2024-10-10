@@ -1,10 +1,11 @@
 from flask import Flask, redirect, render_template, flash, url_for
-from flask import request, abort, g
+from flask import request, abort, g, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from forms import AddItemForm, RegisterForm, LoginForm, VerifyEmail
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from flask_mail import Mail, Message
 from sqlalchemy.orm import relationship
 from sqlalchemy import func, cast, Integer
 from functools import wraps
@@ -12,6 +13,7 @@ import random
 import time
 import requests
 import smtplib
+import secrets
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "LXS2U[j&'iMg<)5R~@!Q%0TKn"
@@ -25,9 +27,20 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+# Connect to Flutterwave
 FLW_PUBLIC_KEY = "FLWPUBK_TEST-5de963cfabeed4edab5b8b6a2f5a6984-X"
 FLW_SECRET_KEY = "FLWSECK_TEST-10e26c3e22d3883f6258bd342016396b-X"
 FLW_REDIRECT_URL = "https://github.com/Mzed-io"
+
+# Connect to Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'adekomuheez567@gmail.com'
+app.config['MAIL_PASSWORD'] = 'bgxt uqqx ipsw avws'
+
+mail = Mail(app)
 
 password = "bgxt uqqx ipsw avws"
 my_email = "adekomuheez567@gmail.com"
@@ -148,18 +161,38 @@ def register():
             flash("You've already registered with that email, login instead", 'error')
             return redirect(url_for('login'))
         else:
-            with app.app_context():
-                hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-                new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-                db.session.add(new_user)
-                db.session.commit()
-                login_user(new_user, remember=True)
-                return redirect(url_for('home'))
+            email = form.email.data
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            verification_code = secrets.token_hex(3).upper()
+            session['verification_code'] = verification_code
+            session['username'] = form.username.data
+            session['user_email'] = form.email.data
+            session['password'] = hashed_password
+            msg = Message('Your Email Verification Code',
+                          sender= 'adekomuheez567@gmail.com',
+                          recipients=[email])
+            msg.body = f"Your verification code is: {verification_code}"
+            msg.subject = 'QuickDash Verification'
+            mail.send(msg)
+            return redirect(url_for('verify_email'))
     return render_template('register.html', form=form)
 
 @app.route('/verify-email', methods=['GET', 'POST'])
 def verify_email():
     form = VerifyEmail()
+    if request.method == "POST":
+        code = form.code.data
+        if code == session.get('verification_code'):
+            with app.app_context():
+                new_user = User(username=session.get('username'), email=session.get('user_email'),
+                                password=session.get('password'))
+                db.session.add(new_user)
+                db.session.commit()
+                login_user(new_user, remember=True)
+                return redirect(url_for('home'))
+        elif code != session.get('verification_code'):
+            flash('Incorrect verification code. Try again.', 'error')
+            return redirect(url_for('register'))
     return render_template('verify-email.html', form=form)
 
 

@@ -20,15 +20,13 @@
             background-size: cover  ;
         }
     </style>
-    <title>Join QuickDash | Sign Up Today!</title>
+    <title>QuickDash | Verify Email</title>
 </head>
 <body class="flxcent">
     <div class="form-container">
-        <h2 class="title">REGISTER</h2>
-        <form action="{{ url_for('register') }}" method="post" class="flx">
+        <h2 class="title">Enter Verification Code</h2>
+        <form action="{{ url_for('verify_email') }}" method="post" class="flx">
             <div class="input-field">
-                <!-- <input type="text" name="username" required>
-                <label>Username</label> -->
                 {{ form.code }}
                 {{ form.code.label }}
             </div>
@@ -40,9 +38,6 @@
             {% endif %}
             {% endwith %}
             <button type="submit" style="margin-top: 15px;">SUBMIT</button>
-            <!-- <div class="login flxcent">
-                <p>Have an account?</p><a href="{{ url_for('login') }}">Sign In</a>
-            </div> -->
         </form>
     </div>
 </body>
