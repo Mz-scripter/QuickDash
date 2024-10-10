@@ -2,7 +2,7 @@ from flask import Flask, redirect, render_template, flash, url_for
 from flask import request, abort, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from forms import AddItemForm, RegisterForm, LoginForm
+from forms import AddItemForm, RegisterForm, LoginForm, VerifyEmail
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from sqlalchemy.orm import relationship
@@ -156,6 +156,11 @@ def register():
                 login_user(new_user, remember=True)
                 return redirect(url_for('home'))
     return render_template('register.html', form=form)
+
+@app.route('/verify-email', methods=['GET', 'POST'])
+def verify_email():
+    form = VerifyEmail()
+    return render_template('verify-email.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
