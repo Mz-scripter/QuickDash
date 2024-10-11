@@ -2,13 +2,14 @@ from flask import Flask, redirect, render_template, flash, url_for
 from flask import request, abort, g, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from forms import AddItemForm, RegisterForm, LoginForm, VerifyEmail
+from forms import AddItemForm, RegisterForm, LoginForm, VerifyEmail, RequestResetForm, ResetPasswordForm
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_mail import Mail, Message
 from sqlalchemy.orm import relationship
 from sqlalchemy import func, cast, Integer
 from functools import wraps
+from itsdangerous import URLSafeTimedSerializer
 import random
 import time
 import requests
@@ -80,6 +81,19 @@ class Cart(db.Model):
 
 # with app.app_context():
 #     db.create_all()
+
+# Password Reset Functionality
+def generate_reset_token(email):
+    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return s.dumps(email, salt='password-reset-salt')
+
+def verify_reset_token(token, expiration=1800):
+    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = s.loads(token, salt='password-reset-salt', max_age=expiration)
+    except:
+        return None
+    return email
 
 @app.before_request
 def set_variable():
@@ -195,6 +209,43 @@ def verify_email():
             return redirect(url_for('register'))
     return render_template('verify-email.html', form=form)
 
+@app.route('/reset-password', methods=['GET', 'POST'])
+def reset_request():
+    form = RequestResetForm()
+    if request.method == 'POST':
+        with app.app_context():
+            user = User.query.filter_by(email=form.email.data).first()
+            if user:
+                token = generate_reset_token(user.email)
+                msg = Message('Password Reset Request',
+                              sender=my_email,
+                              recipients=[user.email])
+                reset_url = url_for('reset_token', token=token, _external=True)
+                msg.body = f"To reset your password, visit the following link: \n {reset_url} \n If you did not make this request then simply ignore this email."
+                msg.subject = "QuickDash | Reset Password"
+                mail.send(msg)
+            else:
+                flash("No account found with that email.", "error")
+            return redirect(url_for('login'))
+    return render_template('reset_request.html', form=form)
+
+@app.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    email = verify_reset_token(token)
+    if email is None:
+        flash("That is an invalid or expired token", 'error')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if request.method == "POST":
+        with app.app_context():
+            user = User.query.filter_by(email=email).first()
+            if user:
+                hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+                user.password = hashed_password
+                db.session.commit()
+                flash("Your password has been updated!", 'success')
+                return redirect(url_for('login'))
+    return render_template('reset_token.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
