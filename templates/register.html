@@ -45,9 +45,6 @@
                 {{ form.password }}
                 {{ form.password.label }}
             </div>
-            <div class="forget flxcent">
-                <a href="#">Forget Password?</a>
-            </div>
             {% with errors = get_flashed_messages(category_filter=['error']) %}
             {% if errors %}
             {% for err in errors %}

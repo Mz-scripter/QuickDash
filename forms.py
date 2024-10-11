@@ -10,6 +10,15 @@ class RegisterForm(FlaskForm):
 class VerifyEmail(FlaskForm):
     code = StringField("Verification Code", validators=[DataRequired()])
 
+class RequestResetForm(FlaskForm):
+    email = EmailField("Email", validators=[DataRequired(), Email()])
+    submit = SubmitField("Request Password Reset")
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField("New Password", validators=[DataRequired()])
+    confirm_password = PasswordField("Confirm New Password", validators=[DataRequired()])
+    submit = SubmitField("Reset Password")
+
 class LoginForm(FlaskForm):
     email = EmailField("Email", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired(), Length(min=8, max=20)])

@@ -9,3 +9,4 @@ Flask-Bootstrap==3.3.7.1
 requests==2.32.3
 gunicorn==23.0.0
 Flask-Mail==0.10.0
+itsdangerous==2.2.0
