@@ -20,38 +20,25 @@
             background-size: cover  ;
         }
     </style>
-    <title>Join QuickDash | Jump Back In!</title>
+    <title>Join QuickDash | Request Reset</title>
 </head>
 <body class="flxcent">
     <div class="form-container">
-        <h2 class="title">LOGIN</h2>
-        <form action="{{ url_for('login') }}" method="post" class="flx">
-            {{ form.hidden_tag() }}
+        <h2 class="title">Request Reset</h2>
+        <form action="{{ url_for('reset_request') }}" method="post" class="flx">
             <div class="input-field">
                 {{ form.email }}
-                {{form.email.label}}
+                {{ form.email.label }}
             </div>
-          
-            <div class="input-field">
-                {{ form.password }}
-                {{ form.password.label }}
-            </div>
-            <div class="forget flxcent">
-                <a href="{{ url_for('reset_request') }}">Forget Password?</a>
-            </div>
-            {% with errors = get_flashed_messages(category_filter=['error', 'success']) %}
+            {% with errors = get_flashed_messages(category_filter=['error']) %}
             {% if errors %}
             {% for err in errors %}
             <p style="color: #FAFAFA;">{{ err }}</p>
             {% endfor %}
             {% endif %}
             {% endwith %}
-            <button type="submit" style="margin-top: 15px;">LOGIN</button>
-            <div class="login flxcent">
-                <p>Don't have an account?</p><a href="{{ url_for('register') }}">Register</a>
-            </div>
+            <button type="submit" onclick="alert(`A link was sent to your email. Click it to reset password.`);">REQUEST RESET</button>
         </form>
-        
     </div>
 </body>
 </html>
