@@ -91,9 +91,11 @@ def verify_reset_token(token, expiration=1800):
     s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
     try:
         email = s.loads(token, salt='password-reset-salt', max_age=expiration)
-    except:
+        return email
+    except Exception as e:
+        print(f"Token verification failed: {e}")
         return None
-    return email
+    
 
 @app.before_request
 def set_variable():
@@ -102,12 +104,14 @@ def set_variable():
     else:
         g.cart_num = 0
 
+# Home path
 @app.route('/', methods=["GET", "POST"])
 def home():
     items = Items.query.all()
     random.shuffle(items)
     return render_template('index.html', all_items=items, numc=g.cart_num)
 
+# Functionality for search
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == "POST":
@@ -119,10 +123,12 @@ def search():
             return render_template('index.html',all_items=search_results)
     return redirect(url_for('home'))
 
+# Header path
 @app.route('/header', methods=["GET", "POST"])
 def header():
     return render_template('header.html', numc=g.cart_num)
 
+# Functionality for add to cart
 @app.route('/add-to-cart', methods=["GET", "POST"])
 @login_required
 def add_to_cart():
@@ -143,6 +149,7 @@ def add_to_cart():
         db.session.commit()
         return redirect(request.referrer)
 
+# Functionality to remove item
 @app.route('/remove_item/<int:item_id>', methods=["GET", "POST"])
 @login_required
 def remove_item(item_id):
@@ -159,6 +166,7 @@ def remove_item(item_id):
             db.session.commit()
         return redirect(request.referrer)
 
+# Functionality to remove all
 @app.route('/remove-all/<int:item_id>', methods=["GET", "POST"])
 @login_required
 def remove_all(item_id):
@@ -167,6 +175,7 @@ def remove_all(item_id):
         db.session.commit()
         return redirect(request.referrer)
 
+# Register path
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
@@ -191,6 +200,7 @@ def register():
             return redirect(url_for('verify_email'))
     return render_template('register.html', form=form)
 
+# Verify email path
 @app.route('/verify-email', methods=['GET', 'POST'])
 def verify_email():
     form = VerifyEmail()
@@ -209,14 +219,17 @@ def verify_email():
             return redirect(url_for('register'))
     return render_template('verify-email.html', form=form)
 
+# Reset password path
 @app.route('/reset-password', methods=['GET', 'POST'])
 def reset_request():
     form = RequestResetForm()
     if request.method == 'POST':
         with app.app_context():
             user = User.query.filter_by(email=form.email.data).first()
+            print(user.email)
             if user:
                 token = generate_reset_token(user.email)
+                print(token)
                 msg = Message('Password Reset Request',
                               sender=my_email,
                               recipients=[user.email])
@@ -227,11 +240,13 @@ def reset_request():
             else:
                 flash("No account found with that email.", "error")
             return redirect(url_for('login'))
-    return render_template('reset_request.html', form=form)
+    return render_template('reset-request.html', form=form)
 
+# Functionality for reset password
 @app.route('/reset-password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
     email = verify_reset_token(token)
+    print(email)
     if email is None:
         flash("That is an invalid or expired token", 'error')
         return redirect(url_for('reset_request'))
@@ -245,8 +260,9 @@ def reset_token(token):
                 db.session.commit()
                 flash("Your password has been updated!", 'success')
                 return redirect(url_for('login'))
-    return render_template('reset_token.html', form=form)
+    return render_template('reset-token.html', form=form, token=token, _external=True)
 
+# Login path
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -265,6 +281,7 @@ def login():
                     flash("Password incorrect, try again", 'error')
     return render_template('login.html', form=form)
 
+# Functionality for add item
 @app.route('/add-item', methods=['GET', 'POST'])
 @login_required
 def add_item():
@@ -288,6 +305,7 @@ def add_item():
     else:
         abort(404)
 
+# Cart path
 @app.route('/cart', methods=["GET", "POST"])
 @login_required
 def cart():
@@ -301,17 +319,20 @@ def cart():
     cart_items = cart_items.group_by(Cart.dish).all()
     return render_template("cart.html", numc=g.cart_num, cart_items=cart_items)
 
+# Profile path
 @app.route('/profile', methods=["GET", "POST"])
 @login_required
 def profile():
     return render_template('profile.html', numc=g.cart_num, name=current_user.username, email=current_user.email)
 
+# Functionality for logout
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
+# Help path
 @app.route('/help', methods=["GET", "POST"])
 def help():
     if request.method == "POST":
@@ -326,21 +347,25 @@ def help():
             return redirect(url_for('help'))
     return render_template("help.html", numc=g.cart_num)
 
+# Functionality for number of cart items
 @login_required
 def calculate_num_cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()
     return len(cart_items)
 
+# Payment successful path
 @app.route('/success', methods=["GET", "POST"])
 @login_required
 def success():
     return render_template('success.html')
 
+# Payment failed path
 @app.route('/failure', methods=["GET", "POST"])
 @login_required
 def failure():
     return render_template('failure.html')
 
+# Checkout path
 @app.route('/checkout', methods=["GET", "POST"])
 @login_required
 def checkout():

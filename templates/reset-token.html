@@ -20,38 +20,29 @@
             background-size: cover  ;
         }
     </style>
-    <title>Join QuickDash | Jump Back In!</title>
+    <title>Join QuickDash | Reset Password</title>
 </head>
 <body class="flxcent">
     <div class="form-container">
-        <h2 class="title">LOGIN</h2>
-        <form action="{{ url_for('login') }}" method="post" class="flx">
-            {{ form.hidden_tag() }}
-            <div class="input-field">
-                {{ form.email }}
-                {{form.email.label}}
-            </div>
-          
+        <h2 class="title">Request Password</h2>
+        <form action="{{ url_for('reset_token', token=token) }}" method="post" class="flx">
             <div class="input-field">
                 {{ form.password }}
                 {{ form.password.label }}
             </div>
-            <div class="forget flxcent">
-                <a href="{{ url_for('reset_request') }}">Forget Password?</a>
+            <div class="input-field">
+                {{ form.confirm_password }}
+                {{ form.confirm_password.label }}
             </div>
-            {% with errors = get_flashed_messages(category_filter=['error', 'success']) %}
+            {% with errors = get_flashed_messages(category_filter=['error']) %}
             {% if errors %}
             {% for err in errors %}
             <p style="color: #FAFAFA;">{{ err }}</p>
             {% endfor %}
             {% endif %}
             {% endwith %}
-            <button type="submit" style="margin-top: 15px;">LOGIN</button>
-            <div class="login flxcent">
-                <p>Don't have an account?</p><a href="{{ url_for('register') }}">Register</a>
-            </div>
+            <button type="submit">RESET PASSWORD</button>
         </form>
-        
     </div>
 </body>
 </html>
