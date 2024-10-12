@@ -286,21 +286,20 @@ def login():
 @login_required
 def add_item():
     form = AddItemForm()
-    if request.method == "POST":
-        with app.app_context():
-            new_item = Items(
-                dish = form.dish.data,
-                rating = form.rating.data,
-                time = form.time.data,
-                img_url = form.img_url.data,
-                price = form.price.data
-            )
-            db.session.add(new_item)
-            db.session.commit()
-            return redirect(url_for('home'))
-    first_user = User.query.order_by(User.id).first()
-    second_user = User.query.order_by(User.id).offset(1).first()
-    if current_user.id == first_user.id or current_user.id == second_user.id:
+    allowed_emails = ['mzscripterx5@gmail.com']
+    if current_user.email in allowed_emails:
+        if request.method == "POST":
+            with app.app_context():
+                new_item = Items(
+                    dish = form.dish.data,
+                    rating = form.rating.data,
+                    time = form.time.data,
+                    img_url = form.img_url.data,
+                    price = form.price.data
+                )
+                db.session.add(new_item)
+                db.session.commit()
+                return redirect(url_for('home'))
         return render_template('add-item.html', form=form, numc=g.cart_num)
     else:
         abort(404)
