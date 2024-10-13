@@ -125,6 +125,7 @@ def search():
 
 # Header path
 @app.route('/header', methods=["GET", "POST"])
+@login_required
 def header():
     return render_template('header.html', numc=g.cart_num)
 
