@@ -334,6 +334,7 @@ def logout():
 
 # Help path
 @app.route('/help', methods=["GET", "POST"])
+@login_required
 def help():
     if request.method == "POST":
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
