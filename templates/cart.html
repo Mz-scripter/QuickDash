@@ -1,3 +1,4 @@
+{% include "loading-page.html" %}
 {% include "header.html" %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,57 +8,59 @@
     <title>QuickDash |Cart</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
 </head>
-<body class="flx">
-    <div class="cart-item-container flx">
-        <h2>Cart ({{ numc }})</h2>
-        <hr class="section-divider">
-        {% set ns = namespace(total_price=0) %}
-        {% for cart_item in cart_items %}
-        <!-- Cart item -->
-        <div class="cart-item flx">
-            <div class="top-section flx">
-                <div class="prod-details flx">
-                    <img src="{{ cart_item.img_url }}" alt="" class="prod-img">
-                    <div class="prod-title flx">
-                        <div class="prod-name">{{ cart_item.dish }}</div>
-                        <div class="seller"><span class="seller-name">Seller: </span> Lorem, ipsum.</div>
-                        <div class="price small">₦ {{ cart_item.price }}</div>
+<body>
+    <div class="flx bod">
+        <div class="cart-item-container flx">
+            <h2>Cart ({{ numc }})</h2>
+            <hr class="section-divider">
+            {% set ns = namespace(total_price=0) %}
+            {% for cart_item in cart_items %}
+            <!-- Cart item -->
+            <div class="cart-item flx">
+                <div class="top-section flx">
+                    <div class="prod-details flx">
+                        <img src="{{ cart_item.img_url }}" alt="" class="prod-img">
+                        <div class="prod-title flx">
+                            <div class="prod-name">{{ cart_item.dish }}</div>
+                            <div class="seller"><span class="seller-name">Seller: </span> Lorem, ipsum.</div>
+                            <div class="price small">₦ {{ cart_item.price }}</div>
+                        </div>
+                    </div>
+                    <div class="price big">₦ {{ cart_item.price }}</div>
+                </div>
+                <div class="bottom-section flx">
+                    <div class="remove">
+                        <a href="{{ url_for('remove_all', item_id=cart_item.item_id) }}" class="btn">
+                            <img src="{{ url_for('static', filename='icons/remove.svg') }}" alt="" class="rem-icon icon">
+                            Remove
+                        </a>
+                    </div>
+                    <div class="add-sub flx">
+                        <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="btn">-</a>
+                        <input type="text" class="quantity" value="{{ cart_item.quantity }}" disabled>
+                        {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
+                        <a href="{{ url_for('add_to_cart', id=cart_item.item_id) }}" class="btn">+</a>
                     </div>
                 </div>
-                <div class="price big">₦ {{ cart_item.price }}</div>
             </div>
-            <div class="bottom-section flx">
-                <div class="remove">
-                    <a href="{{ url_for('remove_all', item_id=cart_item.item_id) }}" class="btn">
-                        <img src="{{ url_for('static', filename='icons/remove.svg') }}" alt="" class="rem-icon icon">
-                        Remove
-                    </a>
-                </div>
-                <div class="add-sub flx">
-                    <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="btn">-</a>
-                    <input type="text" class="quantity" value="{{ cart_item.quantity }}" disabled>
-                    {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
-                    <a href="{{ url_for('add_to_cart', id=cart_item.item_id) }}" class="btn">+</a>
-                </div>
+            <hr class="section-divider">
+            <!-- End of Cart item -->
+            {% endfor %}
+        </div>
+        <div class="summary-container flx">
+            <h2>Cart Summary</h2>
+            <hr class="section-divider">
+            <div class="subtotal flx">
+                <span>Subtotal</span>
+                <div class="total price">₦ {{ ns.total_price }}</div>
             </div>
+            <hr class="section-divider">
+            <form action="{{ url_for('checkout') }}" method="post" class="flxcent">
+                <input type="hidden" name="total_price" value="{{ ns.total_price }}">
+                <button type="submit" class="btn price">Checkout (₦ {{ ns.total_price }}) </button>
+            </form>
         </div>
-        <hr class="section-divider">
-         <!-- End of Cart item -->
-        {% endfor %}
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </div>
-    <div class="summary-container flx">
-        <h2>Cart Summary</h2>
-        <hr class="section-divider">
-        <div class="subtotal flx">
-            <span>Subtotal</span>
-            <div class="total price">₦ {{ ns.total_price }}</div>
-        </div>
-        <hr class="section-divider">
-        <form action="{{ url_for('checkout') }}" method="post" class="flxcent">
-            <input type="hidden" name="total_price" value="{{ ns.total_price }}">
-            <button type="submit" class="btn price">Checkout (₦ {{ ns.total_price }}) </button>
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
