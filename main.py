@@ -95,7 +95,6 @@ def verify_reset_token(token, expiration=1800):
     except Exception as e:
         print(f"Token verification failed: {e}")
         return None
-    
 
 @app.before_request
 def set_variable():
