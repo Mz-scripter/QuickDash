@@ -25,7 +25,7 @@
 <body class="flxcent">
     <div class="form-container">
         <h2 class="title">LOGIN</h2>
-        <form action="{{ url_for('login') }}" method="post" class="flx">
+        <form action="{{ url_for('main.login') }}" method="post" class="flx">
             {{ form.hidden_tag() }}
             <div class="input-field">
                 {{ form.email }}
@@ -37,7 +37,7 @@
                 {{ form.password.label }}
             </div>
             <div class="forget flxcent">
-                <a href="{{ url_for('reset_request') }}">Forget Password?</a>
+                <a href="{{ url_for('main.reset_request') }}">Forget Password?</a>
             </div>
             {% with errors = get_flashed_messages(category_filter=['error', 'success']) %}
             {% if errors %}
@@ -48,7 +48,7 @@
             {% endwith %}
             <button type="submit" style="margin-top: 15px;">LOGIN</button>
             <div class="login flxcent">
-                <p>Don't have an account?</p><a href="{{ url_for('register') }}">Register</a>
+                <p>Don't have an account?</p><a href="{{ url_for('main.register') }}">Register</a>
             </div>
         </form>
         

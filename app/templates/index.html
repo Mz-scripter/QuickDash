@@ -34,7 +34,7 @@
                     </div>
                     
                     <div class="add-cart">
-                        <a href="{{ url_for('add_to_cart', id=item.id) }}">
+                        <a href="{{ url_for('main.add_to_cart', id=item.id) }}">
                             <img src="{{ url_for('static', filename='icons/plus-svgrepo-com.svg') }}" alt="" class="add-cart-icon">
                         </a>
                         <span class="hover-text">Add to Cart</span>

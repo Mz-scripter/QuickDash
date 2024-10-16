@@ -25,7 +25,7 @@
 <body class="flxcent">
     <div class="form-container">
         <h2 class="title">Request Password</h2>
-        <form action="{{ url_for('reset_token', token=token) }}" method="post" class="flx">
+        <form action="{{ url_for('main.reset_token', token=token) }}" method="post" class="flx">
             <div class="input-field">
                 {{ form.password }}
                 {{ form.password.label }}

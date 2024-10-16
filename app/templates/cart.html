@@ -28,16 +28,16 @@
             </div>
             <div class="bottom-section flx">
                 <div class="remove">
-                    <a href="{{ url_for('remove_all', item_id=cart_item.item_id) }}" class="btn">
+                    <a href="{{ url_for('main.remove_all', item_id=cart_item.item_id) }}" class="btn">
                         <img src="{{ url_for('static', filename='icons/remove.svg') }}" alt="" class="rem-icon icon">
                         Remove
                     </a>
                 </div>
                 <div class="add-sub flx">
-                    <a href="{{ url_for('remove_item', item_id=cart_item.item_id) }}" class="btn">-</a>
+                    <a href="{{ url_for('main.remove_item', item_id=cart_item.item_id) }}" class="btn">-</a>
                     <input type="text" class="quantity" value="{{ cart_item.quantity }}" disabled>
                     {% set ns.total_price = ns.total_price + (cart_item.price * cart_item.quantity) %}
-                    <a href="{{ url_for('add_to_cart', id=cart_item.item_id) }}" class="btn">+</a>
+                    <a href="{{ url_for('main.add_to_cart', id=cart_item.item_id) }}" class="btn">+</a>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <div class="total price">₦ {{ ns.total_price }}</div>
         </div>
         <hr class="section-divider">
-        <form action="{{ url_for('checkout') }}" method="post" class="flxcent">
+        <form action="{{ url_for('main.checkout') }}" method="post" class="flxcent">
             <input type="hidden" name="total_price" value="{{ ns.total_price }}">
             <button type="submit" class="btn price">Checkout (₦ {{ ns.total_price }}) </button>
         </form>

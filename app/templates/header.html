@@ -21,7 +21,7 @@
     <!-- Header Section -->
     <header class="flx">
         <div class="left-section flx">
-            <a href="{{ url_for('home') }}">
+            <a href="{{ url_for('main.home') }}">
                 <div class="logo-container">
                     <img src="{{ url_for('static', filename='icons/delivery-truck-delivery-svgrepo-com.svg') }}" alt="" class="logo">
                 </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="right-section flxcent">
-            <form action="{{ url_for('search') }}" method="post" class="search-form flx">
+            <form action="{{ url_for('main.search') }}" method="post" class="search-form flx">
                 <div class="search flxcent">
                     <span class="search-icon-container flxcent">
                         
@@ -42,17 +42,17 @@
                 <button type="submit" class="btn">Search</button>
             </form>
             {% if current_user.email == 'mzscripterx5@gmail.com' %}
-            <a href="{{ url_for('add_item') }}" class="btn">Add Item</a>
+            <a href="{{ url_for('main.add_item') }}" class="btn">Add Item</a>
             {% endif %}
             <div class="profile-cart-container flxcent">
                 <div class="cart-container flxcent">
-                    <a href="{{ url_for('cart') }}">
+                    <a href="{{ url_for('main.cart') }}">
                         <img src="{{ url_for('static', filename='icons/cart-2-svgrepo-com.svg') }}" alt="" class="cart">
                     </a>
                     <span class="numc flxcent">{{ numc }}</span>
                 </div>
                     <div class="profile-container flxcent">
-                        <a href="{{ url_for('profile') }}">
+                        <a href="{{ url_for('main.profile') }}">
                             <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt=""    class="profile">
                         </a>
                     </div>                
@@ -65,20 +65,20 @@
 
     <!-- Navbar for Smaller screens -->
     <nav id="navbar">
-        <a href="{{ url_for('home') }}" class="nav-link">
+        <a href="{{ url_for('main.home') }}" class="nav-link">
             <img src="{{ url_for('static', filename='icons/home-svgrepo-com.svg') }}" alt="" class="nav-icon nav-home">
             <span class="nav-text">HOME</span>            
         </a>
-        <a href="{{ url_for('cart') }}" class="nav-link nav-cart">
+        <a href="{{ url_for('main.cart') }}" class="nav-link nav-cart">
             <img src="{{ url_for('static', filename='icons/cart-svgrepo-com.svg') }}" alt="" class="nav-icon">
             <span class="numc flxcent">{{ numc }}</span>
             <span class="nav-text">CART</span>
         </a>
-        <a href="{{ url_for('help') }}" class="nav-link">
+        <a href="{{ url_for('main.help') }}" class="nav-link">
             <img src="{{ url_for('static', filename='icons/message-circle-dots-svgrepo-com.svg') }}" alt="" class="nav-icon nav-help">
             <span class="nav-text">HELP</span>
         </a>
-        <a href="{{ url_for('profile') }}" class="nav-link">
+        <a href="{{ url_for('main.profile') }}" class="nav-link">
             <img src="{{ url_for('static', filename='icons/profile-circle-svgrepo-com.svg') }}" alt="" class="nav-icon nav-profile">
             <span class="nav-text">PROFILE</span>
         </a>
@@ -88,7 +88,7 @@
 
     <!-- Help Icon on Larger Screens -->
     <div class="help-icon-container">
-        <a href="{{ url_for('help') }}">
+        <a href="{{ url_for('main.help') }}">
             <img src="{{ url_for('static', filename='icons/help-information-question-svgrepo-com.svg') }}" alt="" class="help-icon">
         </a>
       </div>
