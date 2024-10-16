@@ -4,7 +4,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 from sqlalchemy import func, cast, Integer
 from .models import User, Items, Cart
 from . import db, bcrypt, mail
-from forms import RegisterForm, LoginForm, AddItemForm, RequestResetForm, ResetPasswordForm, VerifyEmail
+from .forms import RegisterForm, LoginForm, AddItemForm, RequestResetForm, ResetPasswordForm, VerifyEmail
 from  flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 import secrets, time, random
@@ -18,7 +18,7 @@ def generate_reset_token(email):
     return s.dumps(email, salt='password-reset-salt')
 
 def verify_reset_token(token, expiration=1800):
-    s = URLSafeTimedSerializer(main.config['SECRET_KEY'])
+    s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
     try:
         email = s.loads(token, salt='password-reset-salt', max_age=expiration)
         return email
@@ -121,11 +121,8 @@ def register():
             session['username'] = form.username.data
             session['user_email'] = form.email.data
             session['password'] = hashed_password
-            msg = Message('Your Email Verification Code',
-                          sender= current_app.config['MAIL_USERNAME'],
-                          recipients=[email])
+            msg = Message(subject='QuickDash | Email Verification', sender=('QuickDash', 'adekomuheez567@gmail.com'), recipients=[email])
             msg.body = f"Your verification code is: {verification_code}"
-            msg.subject = 'QuickDash Verification'
             mail.send(msg)
             return redirect(url_for('main.verify_email'))
     return render_template('register.html', form=form)
