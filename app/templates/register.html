@@ -25,7 +25,7 @@
 <body class="flxcent">
     <div class="form-container">
         <h2 class="title">REGISTER</h2>
-        <form action="{{ url_for('register') }}" method="post" class="flx">
+        <form action="{{ url_for('main.register') }}" method="post" class="flx">
             <div class="input-field">
                 <!-- <input type="text" name="username" required>
                 <label>Username</label> -->
@@ -54,7 +54,7 @@
             {% endwith %}
             <button onclick="alert('A verification code has been sent to your email')" type="submit" style="margin-top: 15px;">REGISTER</button>
             <div class="login flxcent">
-                <p>Have an account?</p><a href="{{ url_for('login') }}">Sign In</a>
+                <p>Have an account?</p><a href="{{ url_for('main.login') }}">Sign In</a>
             </div>
         </form>
     </div>

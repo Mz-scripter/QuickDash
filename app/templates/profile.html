@@ -24,7 +24,7 @@
         <img src="{{ url_for('static', filename='icons/user-profile-img.svg') }}" alt="" class="user-profile-img">
         <h3 class="user-name det">Username: <span class="details">{{ name }}</span></h3>
         <h3 class="user-email det">Email: <span class="details">{{ email }}</span></h3>
-        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        <a href="{{ url_for('main.logout') }}" class="btn">Logout</a>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
