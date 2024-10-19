@@ -1,5 +1,8 @@
 {% include "header.html" %}
 <!-- Intro -->
+ <head>
+    <script src="https://unpkg.com/scrollreveal"></script>
+ </head>
  <div class="hero">
     <img src="{{ url_for('static', filename='images/menu-hero.jpg') }}" alt="" class="hero-img">
     <h1 class="flxcent">Craving something delicious? You're in the right place.</h1>
@@ -11,7 +14,7 @@
             <div class="restaurant-dishes">
                 {% for item in all_items %}
                 <!-- Dish Card Item -->
-                <div class="dish-item flx">
+                <div class="dish-item reveal flx">
                     <div class="top-dish-section">  
                         <img src="{{ item.img_url }}" alt="" class="dish-img">
                     </div>
@@ -47,6 +50,14 @@
        <!-- End of Featured Dishes Section -->
 
        
- <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+ <script>
+    ScrollReveal().reveal('.reveal', {
+            delay: 200,
+            distance: '50px',
+            origin: 'bottom',
+            easing: 'ease-in-out'
+        });
+ </script>
+       <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
