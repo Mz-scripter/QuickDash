@@ -21,11 +21,38 @@
 </head>
 <body class="flxcent">
     <div class="account-details flx">
-        <img src="{{ url_for('static', filename='icons/user-profile-img.svg') }}" alt="" class="user-profile-img">
-        <h3 class="fullname-name det">Full Name: <span class="details">{{ user.fullname }}</span></h3>
-        <h3 class="user-email det">Email: <span class="details">{{ user.email }}</span></h3>
-        <h3 class="user-phone det">Phone Number <span class="details">{{ user.phone_number }}</span></h3>
-        <h3 class="user-address det">Address <span class="details">{{ user.address }}</span></h3>
+        <form class="profile-form" action="">
+            <div class="links flx">
+                <a href="{{ url_for('main.profile') }}" class="link account flxcent">
+                    <img src="{{ url_for('static', filename='icons/account-head.svg') }}" alt="" class="link-icon">
+                    My Account
+                </a>
+                <a href="" class="link orders flxcent">
+                    <img src="{{ url_for('static', filename='icons/past-orders.svg') }}" alt="" class="link-icon">
+                    Past Orders
+                </a>
+            </div>
+            <div class="profile-det">
+                <label for="fullname">Full Name</label>
+                <input class="profile-input" type="text" name="fullname" id="fullname" value="{{ user.fullname }}" readonly>
+            </div>
+
+            <div class="profile-det">
+                <label for="email">Email</label>
+                <input class="profile-input" type="text" name="email" id="email" value="{{ user.email }}" readonly>
+            </div>
+
+            <div class="profile-det">
+                <label for="phone">Phone Number</label>
+                <input class="profile-input" type="text" name="phone" id="phone" value="{{ user.phone_number }}" readonly>
+            </div>
+
+            <div class="profile-det">
+                <label for="address">Address</label>
+                <input class="profile-input" type="text" name="address" id="address" value="{{ user.address }}" readonly>
+            </div>
+
+        </form>
         <a href="{{ url_for('main.logout') }}" class="btn">Logout</a>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
