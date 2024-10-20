@@ -118,8 +118,10 @@ def register():
             hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             verification_code = secrets.token_hex(3).upper()
             session['verification_code'] = verification_code
-            session['username'] = form.username.data
+            session['fullname'] = form.fullname.data
             session['user_email'] = form.email.data
+            session['phone_number'] = form.phone_number.data
+            session['address'] = form.address.data
             session['password'] = hashed_password
             msg = Message(subject='QuickDash | Email Verification', sender=('QuickDash', 'adekomuheez567@gmail.com'), recipients=[email])
             msg.body = f"Your verification code is: {verification_code}"
@@ -135,8 +137,12 @@ def verify_email():
         code = form.code.data
         if code == session.get('verification_code'):
             with current_app.app_context():
-                new_user = User(username=session.get('username'), email=session.get('user_email'),
-                                password=session.get('password'))
+                new_user = User(fullname=session.get('fullname'),
+                                 email=session.get('user_email'),
+                                 phone_number=session.get('phone_number'),
+                                 address=session.get('address'),
+                                 password=session.get('password')
+                            )
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user, remember=True)
