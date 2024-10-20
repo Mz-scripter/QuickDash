@@ -3,8 +3,10 @@ from wtforms import StringField, EmailField, PasswordField, SubmitField
 from wtforms.validators import DataRequired,URL, Email, Length
 
 class RegisterForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired()])
+    fullname = StringField("Full Name", validators=[DataRequired()])
     email = EmailField("Email", validators=[DataRequired(), Email()])
+    phone_number = StringField("Phone Number (+234 xxx xxxx xxx)", validators=[DataRequired()])
+    address = StringField("Address", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired(), Length(min=8, max=20)])
 
 class VerifyEmail(FlaskForm):

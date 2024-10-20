@@ -6,8 +6,10 @@ from flask_login import UserMixin
 class User(UserMixin, db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(250), nullable=False)
+    fullname = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique=True)
+    phone_number = db.Column(db.String(25), nullable=False)
+    address = db.Column(db.String(250), nullable=False)
     password = db.Column(db.String(250), nullable=False)
     cart_items = db.relationship('Cart', backref='user', lazy=True)
 

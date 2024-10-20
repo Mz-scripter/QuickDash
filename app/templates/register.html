@@ -29,14 +29,24 @@
             <div class="input-field">
                 <!-- <input type="text" name="username" required>
                 <label>Username</label> -->
-                {{ form.username }}
-                {{ form.username.label }}
+                {{ form.fullname }}
+                {{ form.fullname.label }}
             </div>
             <div class="input-field">
                 <!-- <input type="email" name="email" required>
                 <label>Email</label> -->
                 {{ form.email }}
                 {{ form.email.label }}
+            </div>
+
+            <div class="input-field">
+                {{ form.phone_number }}
+                {{ form.phone_number.label }}
+            </div>
+
+            <div class="input-field">
+                {{ form.address }}
+                {{ form.address.label }}
             </div>
           
             <div class="input-field">
