@@ -70,7 +70,7 @@ label {
     color: #979897;
     font-weight: 300;
     padding-left: 10px;
-    border: 0.5px solid gray;
+    border: none;
     border-radius: 5px;
 }
 
@@ -117,6 +117,13 @@ label {
         height: 10px;
         width: 10px;
         border-radius: 10px;
+    }
+
+    .link {
+        font-size: 13px;
+    }
+    .link-icon {
+        width: 15px;
     }
 }
 

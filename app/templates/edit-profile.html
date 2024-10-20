@@ -16,12 +16,15 @@
             background-size: cover;
             /* background-repeat: no-repeat; */
         }
+        .profile-input {
+            border: 1px solid gray;
+        }
     </style>
-    <title>QuickDash | Profile</title>
+    <title>QuickDash | Edit Profile</title>
 </head>
 <body class="flxcent">
     <div class="account-details flx">
-        <form class="profile-form" action="">
+        <form class="profile-form" action="{{ url_for('main.edit_profile') }}" method="post">
             <div class="links flx">
                 <a href="{{ url_for('main.profile') }}" class="link account flxcent">
                     <img src="{{ url_for('static', filename='icons/account-head.svg') }}" alt="" class="link-icon">
@@ -38,24 +41,24 @@
             </div>
             <div class="profile-det">
                 <label for="fullname">Full Name</label>
-                <input class="profile-input" type="text" name="fullname" id="fullname" value="{{ user.fullname }}" readonly>
+                <input class="profile-input" type="text" name="fullname" id="fullname" value="{{ form.fullname.data }}">
             </div>
 
             <div class="profile-det">
                 <label for="email">Email</label>
-                <input class="profile-input" type="text" name="email" id="email" value="{{ user.email }}" readonly>
+                <input class="profile-input" type="text" name="email" id="email" value="{{ form.email.data }}">
             </div>
 
             <div class="profile-det">
                 <label for="phone">Phone Number</label>
-                <input class="profile-input" type="text" name="phone" id="phone" value="{{ user.phone_number }}" readonly>
+                <input class="profile-input" type="text" name="phone_number" id="phone" value="{{ form.phone_number.data }}">
             </div>
 
             <div class="profile-det">
                 <label for="address">Address</label>
-                <input class="profile-input" type="text" name="address" id="address" value="{{ user.address }}" readonly>
+                <input class="profile-input" type="text" name="address" id="address" value="{{ form.address.data }}">
             </div>
-
+            <button class="btn" type="submit">Update Profile</button>
         </form>
         <a href="{{ url_for('main.logout') }}" class="btn">Logout</a>
     </div>

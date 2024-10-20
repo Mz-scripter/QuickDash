@@ -41,9 +41,6 @@
                 </div>
                 <button type="submit" class="btn">Search</button>
             </form>
-            {% if current_user.email == 'mzscripterx5@gmail.com' %}
-            <a href="{{ url_for('main.add_item') }}" class="btn">Add Item</a>
-            {% endif %}
             <div class="profile-cart-container flxcent">
                 <div class="cart-container flxcent">
                     <a href="{{ url_for('main.cart') }}">
