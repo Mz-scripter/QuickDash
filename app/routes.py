@@ -308,6 +308,25 @@ def profile():
     user = User.query.filter_by(id=current_user.id).first()
     return render_template('profile.html', numc=g.cart_num, user=user)
 
+@main.route('/edit-profile', methods=["GET", "POST"])
+@login_required
+def edit_profile():
+    user = User.query.filter_by(id=current_user.id).first()
+    edit_form = RegisterForm(
+        fullname=user.fullname,
+        email=user.email,
+        phone_number=user.phone_number,
+        address=user.address
+    )
+    if request.method == "POST":
+        user.fullname = edit_form.fullname.data
+        user.email = edit_form.email.data
+        user.phone_number = edit_form.phone_number.data
+        user.address = edit_form.address.data
+        db.session.commit()
+        return redirect(url_for('main.profile'))
+    return render_template("edit-profile.html", form=edit_form, numc=g.cart_num)
+
 # Logout route
 @main.route('/logout', methods=["GET", "POST"])
 @login_required
