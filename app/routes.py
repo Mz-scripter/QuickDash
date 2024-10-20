@@ -305,7 +305,8 @@ def failure():
 @main.route('/profile', methods=["GET", "POST"])
 @login_required
 def profile():
-    return render_template('profile.html', numc=g.cart_num, name=current_user.username, email=current_user.email)
+    user = User.query.filter_by(id=current_user.id).first()
+    return render_template('profile.html', numc=g.cart_num, user=user)
 
 # Logout route
 @main.route('/logout', methods=["GET", "POST"])

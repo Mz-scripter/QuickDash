@@ -15,7 +15,7 @@ body {
 }
 
 .account-details {
-    height: 300px;
+    /* height: 300px; */
     align-self: center;
     flex-direction: column;
     align-items: center;
@@ -35,6 +35,7 @@ body {
 .details {
     color: #FAFAFA;
     font-weight: 300;
+    font-size: 15px;
 }
 
 .user-profile-img {
@@ -43,6 +44,7 @@ body {
 
 .det {
     font-weight: 400;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 500px) {
