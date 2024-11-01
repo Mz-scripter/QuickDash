@@ -97,6 +97,24 @@ a {
     font-size: 16px;
 }
 
+/* Styles for autocomplete suggestions */
+#suggestions {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    right: 0;
+    background-color: rgb(228, 228, 228);
+    color: #535252;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#suggestions > * {
+    margin: 10px 20px;
+    cursor: pointer;
+}
+
+
 .profile-cart-container {
     flex: 1;
 }
@@ -176,4 +194,9 @@ a {
     header {
         height: 120px;
     }
+
+    #suggestions{
+        font-size: 15px;
+    }
 }
+
