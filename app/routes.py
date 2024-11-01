@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, session, g, abort
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session, g, abort, jsonify
 from flask import current_app
 from flask_login import login_required, current_user, login_user, logout_user
 from sqlalchemy import func, cast, Integer
@@ -51,6 +51,17 @@ def search():
                 return render_template("no-result.html", search=search)
             return render_template('index.html',all_items=search_results)
     return redirect(url_for('main.home'))
+
+# Autocomplete Route
+@main.route('/autocomplete', methods=["GET", "POST"])
+def autocomplete():
+    query = request.args.get('query', '')
+    if query:
+        # Get a list of dishes mathcing the query
+        dishes = Items.query.filter(Items.dish.ilike(f'%{query}%')).limit(5).all()
+        suggestions = [dish.dish for dish in dishes]
+        return jsonify(suggestions)
+    return jsonify([])
 
 # Header route
 @main.route('/header', methods=["GET", "POST"])

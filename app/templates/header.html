@@ -37,7 +37,9 @@
                         
                         <button><img src="{{ url_for('static', filename='icons/search-svgrepo-com.svg') }}" alt="Search Icon" class="search-icon"></button>
                     </span>
-                    <input type="text" class="search-bar" name="search" placeholder="Search QuickDash">
+                    <input type="text" id="search-bar" class="search-bar" name="search" placeholder="Search QuickDash" onkeyup="autocompleteSearch()">
+                    <!-- Autocomplete Suggestions -->
+                     <div id="suggestions"></div>
                 </div>
                 <button type="submit" class="btn">Search</button>
             </form>
@@ -90,3 +92,35 @@
         </a>
       </div>
       <!-- End of Help Icon on Larger Screens -->
+
+      <script>
+        function autocompleteSearch() {
+            var searchInput = document.getElementById("search-bar").value
+            // If the input is empty, hide suggestions
+            if (searchInput.length === 0) {
+                document.getElementById("suggestions").innerHTML = "";
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/autocomplete?query=" + searchInput, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var suggestions = JSON.parse(xhr.responseText);
+                    var suggestionBox = document.getElementById("suggestions");
+                    suggestionBox.innerHTML = "";
+
+                    suggestions.forEach(function(suggestion) {
+                        var suggestionItem = document.createElement("div");
+                        suggestionItem.innerHTML = suggestion;
+                        suggestionItem.onclick = function () {
+                            document.getElementById("search-bar").value = suggestion;
+                            suggestionBox.innerHTML = "";
+                        };
+                        suggestionBox.appendChild(suggestionItem);
+                    });
+                }
+            };
+            xhr.send();
+        }
+      </script>
